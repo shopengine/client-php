@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 

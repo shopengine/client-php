@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -58,7 +58,7 @@ class Body6 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'conditions' => 'string[]',
+        'conditions' => '\SSB\Api\Model\FreeArticleCondition[]',
         'group' => 'int'
     ];
 
@@ -249,7 +249,7 @@ class Body6 implements ModelInterface, ArrayAccess
     /**
      * Gets conditions
      *
-     * @return string[]
+     * @return \SSB\Api\Model\FreeArticleCondition[]
      */
     public function getConditions()
     {
@@ -259,7 +259,7 @@ class Body6 implements ModelInterface, ArrayAccess
     /**
      * Sets conditions
      *
-     * @param string[] $conditions conditions
+     * @param \SSB\Api\Model\FreeArticleCondition[] $conditions conditions
      *
      * @return $this
      */

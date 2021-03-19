@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -65,7 +65,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => '\SSB\Api\Model\Money',
         'name' => 'string',
         'sku' => 'string',
-        'tax' => 'int',
+        'tax' => 'float',
         'originalPrice' => '\SSB\Api\Model\Money'
     ];
 
@@ -83,7 +83,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => null,
         'name' => null,
         'sku' => null,
-        'tax' => null,
+        'tax' => 'float',
         'originalPrice' => null
     ];
 
@@ -453,7 +453,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Gets tax
      *
-     * @return int
+     * @return float
      */
     public function getTax()
     {
@@ -463,7 +463,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Sets tax
      *
-     * @param int $tax tax
+     * @param float $tax Tax of the Article
      *
      * @return $this
      */

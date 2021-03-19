@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -57,7 +57,14 @@ class PaymentInformation implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'linkedCodes' => 'string[]'
+        'linkedCodes' => 'string[]',
+        'heidelpayShortId' => 'string',
+        'holder' => 'string',
+        'iban' => 'string',
+        'swift' => 'string',
+        'paypalOrderRef' => 'string',
+        'amazonOrderRef' => 'string',
+        'klarnaOrderId' => 'string'
     ];
 
     /**
@@ -66,7 +73,14 @@ class PaymentInformation implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'linkedCodes' => null
+        'linkedCodes' => null,
+        'heidelpayShortId' => null,
+        'holder' => null,
+        'iban' => null,
+        'swift' => null,
+        'paypalOrderRef' => null,
+        'amazonOrderRef' => null,
+        'klarnaOrderId' => null
     ];
 
     /**
@@ -96,7 +110,14 @@ class PaymentInformation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'linkedCodes' => 'linkedCodes'
+        'linkedCodes' => 'linkedCodes',
+        'heidelpayShortId' => 'heidelpay_short_id',
+        'holder' => 'holder',
+        'iban' => 'iban',
+        'swift' => 'swift',
+        'paypalOrderRef' => 'paypal_order_ref',
+        'amazonOrderRef' => 'amazon_order_ref',
+        'klarnaOrderId' => 'klarna_order_id'
     ];
 
     /**
@@ -105,7 +126,14 @@ class PaymentInformation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'linkedCodes' => 'setLinkedCodes'
+        'linkedCodes' => 'setLinkedCodes',
+        'heidelpayShortId' => 'setHeidelpayShortId',
+        'holder' => 'setHolder',
+        'iban' => 'setIban',
+        'swift' => 'setSwift',
+        'paypalOrderRef' => 'setPaypalOrderRef',
+        'amazonOrderRef' => 'setAmazonOrderRef',
+        'klarnaOrderId' => 'setKlarnaOrderId'
     ];
 
     /**
@@ -114,7 +142,14 @@ class PaymentInformation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'linkedCodes' => 'getLinkedCodes'
+        'linkedCodes' => 'getLinkedCodes',
+        'heidelpayShortId' => 'getHeidelpayShortId',
+        'holder' => 'getHolder',
+        'iban' => 'getIban',
+        'swift' => 'getSwift',
+        'paypalOrderRef' => 'getPaypalOrderRef',
+        'amazonOrderRef' => 'getAmazonOrderRef',
+        'klarnaOrderId' => 'getKlarnaOrderId'
     ];
 
     /**
@@ -178,6 +213,13 @@ class PaymentInformation implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['linkedCodes'] = isset($data['linkedCodes']) ? $data['linkedCodes'] : null;
+        $this->container['heidelpayShortId'] = isset($data['heidelpayShortId']) ? $data['heidelpayShortId'] : null;
+        $this->container['holder'] = isset($data['holder']) ? $data['holder'] : null;
+        $this->container['iban'] = isset($data['iban']) ? $data['iban'] : null;
+        $this->container['swift'] = isset($data['swift']) ? $data['swift'] : null;
+        $this->container['paypalOrderRef'] = isset($data['paypalOrderRef']) ? $data['paypalOrderRef'] : null;
+        $this->container['amazonOrderRef'] = isset($data['amazonOrderRef']) ? $data['amazonOrderRef'] : null;
+        $this->container['klarnaOrderId'] = isset($data['klarnaOrderId']) ? $data['klarnaOrderId'] : null;
     }
 
     /**
@@ -224,6 +266,174 @@ class PaymentInformation implements ModelInterface, ArrayAccess
     public function setLinkedCodes($linkedCodes)
     {
         $this->container['linkedCodes'] = $linkedCodes;
+
+        return $this;
+    }
+
+    /**
+     * Gets heidelpayShortId
+     *
+     * @return string
+     */
+    public function getHeidelpayShortId()
+    {
+        return $this->container['heidelpayShortId'];
+    }
+
+    /**
+     * Sets heidelpayShortId
+     *
+     * @param string $heidelpayShortId heidelpayShortId
+     *
+     * @return $this
+     */
+    public function setHeidelpayShortId($heidelpayShortId)
+    {
+        $this->container['heidelpayShortId'] = $heidelpayShortId;
+
+        return $this;
+    }
+
+    /**
+     * Gets holder
+     *
+     * @return string
+     */
+    public function getHolder()
+    {
+        return $this->container['holder'];
+    }
+
+    /**
+     * Sets holder
+     *
+     * @param string $holder holder
+     *
+     * @return $this
+     */
+    public function setHolder($holder)
+    {
+        $this->container['holder'] = $holder;
+
+        return $this;
+    }
+
+    /**
+     * Gets iban
+     *
+     * @return string
+     */
+    public function getIban()
+    {
+        return $this->container['iban'];
+    }
+
+    /**
+     * Sets iban
+     *
+     * @param string $iban iban
+     *
+     * @return $this
+     */
+    public function setIban($iban)
+    {
+        $this->container['iban'] = $iban;
+
+        return $this;
+    }
+
+    /**
+     * Gets swift
+     *
+     * @return string
+     */
+    public function getSwift()
+    {
+        return $this->container['swift'];
+    }
+
+    /**
+     * Sets swift
+     *
+     * @param string $swift swift
+     *
+     * @return $this
+     */
+    public function setSwift($swift)
+    {
+        $this->container['swift'] = $swift;
+
+        return $this;
+    }
+
+    /**
+     * Gets paypalOrderRef
+     *
+     * @return string
+     */
+    public function getPaypalOrderRef()
+    {
+        return $this->container['paypalOrderRef'];
+    }
+
+    /**
+     * Sets paypalOrderRef
+     *
+     * @param string $paypalOrderRef paypalOrderRef
+     *
+     * @return $this
+     */
+    public function setPaypalOrderRef($paypalOrderRef)
+    {
+        $this->container['paypalOrderRef'] = $paypalOrderRef;
+
+        return $this;
+    }
+
+    /**
+     * Gets amazonOrderRef
+     *
+     * @return string
+     */
+    public function getAmazonOrderRef()
+    {
+        return $this->container['amazonOrderRef'];
+    }
+
+    /**
+     * Sets amazonOrderRef
+     *
+     * @param string $amazonOrderRef amazonOrderRef
+     *
+     * @return $this
+     */
+    public function setAmazonOrderRef($amazonOrderRef)
+    {
+        $this->container['amazonOrderRef'] = $amazonOrderRef;
+
+        return $this;
+    }
+
+    /**
+     * Gets klarnaOrderId
+     *
+     * @return string
+     */
+    public function getKlarnaOrderId()
+    {
+        return $this->container['klarnaOrderId'];
+    }
+
+    /**
+     * Sets klarnaOrderId
+     *
+     * @param string $klarnaOrderId klarnaOrderId
+     *
+     * @return $this
+     */
+    public function setKlarnaOrderId($klarnaOrderId)
+    {
+        $this->container['klarnaOrderId'] = $klarnaOrderId;
 
         return $this;
     }

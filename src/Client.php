@@ -1,27 +1,30 @@
 <?php namespace SSB\Api;
 
 use GuzzleHttp\Client as GuzzleClient;
+use SSB\Api\Contracts\ShopEngineSettingsInterface;
 
 class Client
 {
-    const API_VERSION = 'v1';
+    const API_VERSION = 'v2';
 
     public $apiUrl = '';
     public $privateKey = '';
+    public $shop = '';
 
     public $debug = false;
     static public $debugData = [];
 
-    public function __construct($apiUrl, $privateKey, $debug = false)
+    public function __construct(ShopEngineSettingsInterface $settings, $debug = false)
     {
-        $this->apiUrl = $apiUrl;
-        $this->privateKey = $privateKey;
+        $this->shop = $settings->getShopEngineShopIdentifier();
+        $this->apiUrl = $settings->getShopEngineServer();
+        $this->privateKey = $settings->getShopEngineSecret();
         $this->debug = $debug;
     }
 
-    public function get($resource, array $parameter = [])
+    public function get($resource, array $parameter = [], bool $raw = false)
     {
-        return $this->makeRequest('GET', $resource, $parameter);
+        return $this->makeRequest('GET', $resource, $parameter, [], $raw);
     }
 
     public function post($resource, array $parameter)
@@ -39,7 +42,7 @@ class Client
         return $this->makeRequest('DELETE', $resource, [], $parameter);
     }
 
-    private function makeRequest($method, $resource, array $parameter, $postParameter = [])
+    private function makeRequest($method, $resource, array $parameter, $postParameter = [], bool $raw = false)
     {
         // validate request
         foreach ($parameter as $key => $value) {
@@ -65,7 +68,7 @@ class Client
                 ['timestamp' => $timestamp, 'signature' => $signature]
             ));
 
-            $url = self::API_VERSION . "/$resource?$requestQuery";
+            $url = self::API_VERSION . "/{$this->shop}/$resource?$requestQuery";
 
             $response = $client->request(
                 $method,
@@ -89,14 +92,13 @@ class Client
             $content = json_decode($response->getBody());
 
             if (json_last_error() !== JSON_ERROR_NONE) {
-                $e = new \Exception($response->getBody().'', 10);
-                throw $e;
+                throw new \Exception($response->getBody().'', 10);
             }
 
             if (is_array($content)) {
                 $arr = [];
                 foreach ($content as $c) {
-                    if (isset($c->class)) {
+                    if (!$raw && isset($c->class)) {
                         $arr[] = ObjectSerializer::deserialize($c, '\\SSB\\Api\\Model\\' . $c->class, []);
                     }
                     else {
@@ -105,7 +107,7 @@ class Client
                 }
                 return $arr;
             }
-            else if (is_object($content) && isset($content->class)) {
+            else if (!$raw && is_object($content) && isset($content->class)) {
                 return ObjectSerializer::deserialize($content, '\\SSB\\Api\\Model\\' . $content->class, []);
             }
             else {

@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -57,11 +57,12 @@ class Body implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'code' => 'string',
         'conditionSetVersionId' => 'int',
         'status' => 'string',
-        'validation' => '\SSB\Api\Model\Validation[]',
-        'codepoolId' => 'int'
+        'validation' => '\SSB\Api\Model\EmailValidation[]',
+        'note' => 'string',
+        'codepoolId' => 'int',
+        'quantity' => 'int'
     ];
 
     /**
@@ -70,11 +71,12 @@ class Body implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'code' => null,
         'conditionSetVersionId' => null,
         'status' => null,
         'validation' => null,
-        'codepoolId' => null
+        'note' => null,
+        'codepoolId' => null,
+        'quantity' => null
     ];
 
     /**
@@ -104,11 +106,12 @@ class Body implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
         'conditionSetVersionId' => 'conditionSetVersionId',
         'status' => 'status',
         'validation' => 'validation',
-        'codepoolId' => 'codepoolId'
+        'note' => 'note',
+        'codepoolId' => 'codepoolId',
+        'quantity' => 'quantity'
     ];
 
     /**
@@ -117,11 +120,12 @@ class Body implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
         'conditionSetVersionId' => 'setConditionSetVersionId',
         'status' => 'setStatus',
         'validation' => 'setValidation',
-        'codepoolId' => 'setCodepoolId'
+        'note' => 'setNote',
+        'codepoolId' => 'setCodepoolId',
+        'quantity' => 'setQuantity'
     ];
 
     /**
@@ -130,11 +134,12 @@ class Body implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
         'conditionSetVersionId' => 'getConditionSetVersionId',
         'status' => 'getStatus',
         'validation' => 'getValidation',
-        'codepoolId' => 'getCodepoolId'
+        'note' => 'getNote',
+        'codepoolId' => 'getCodepoolId',
+        'quantity' => 'getQuantity'
     ];
 
     /**
@@ -212,11 +217,12 @@ class Body implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
         $this->container['conditionSetVersionId'] = isset($data['conditionSetVersionId']) ? $data['conditionSetVersionId'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
+        $this->container['note'] = isset($data['note']) ? $data['note'] : '';
         $this->container['codepoolId'] = isset($data['codepoolId']) ? $data['codepoolId'] : null;
+        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
     }
 
     /**
@@ -228,6 +234,12 @@ class Body implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['conditionSetVersionId'] === null) {
+            $invalidProperties[] = "'conditionSetVersionId' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -236,6 +248,9 @@ class Body implements ModelInterface, ArrayAccess
             );
         }
 
+        if ($this->container['validation'] === null) {
+            $invalidProperties[] = "'validation' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -250,30 +265,6 @@ class Body implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets code
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param string $code code
-     *
-     * @return $this
-     */
-    public function setCode($code)
-    {
-        $this->container['code'] = $code;
-
-        return $this;
-    }
 
     /**
      * Gets conditionSetVersionId
@@ -319,7 +310,7 @@ class Body implements ModelInterface, ArrayAccess
     public function setStatus($status)
     {
         $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+        if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value for 'status', must be one of '%s'",
@@ -335,7 +326,7 @@ class Body implements ModelInterface, ArrayAccess
     /**
      * Gets validation
      *
-     * @return \SSB\Api\Model\Validation[]
+     * @return \SSB\Api\Model\EmailValidation[]
      */
     public function getValidation()
     {
@@ -345,13 +336,37 @@ class Body implements ModelInterface, ArrayAccess
     /**
      * Sets validation
      *
-     * @param \SSB\Api\Model\Validation[] $validation validation
+     * @param \SSB\Api\Model\EmailValidation[] $validation validation
      *
      * @return $this
      */
     public function setValidation($validation)
     {
         $this->container['validation'] = $validation;
+
+        return $this;
+    }
+
+    /**
+     * Gets note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->container['note'];
+    }
+
+    /**
+     * Sets note
+     *
+     * @param string $note note
+     *
+     * @return $this
+     */
+    public function setNote($note)
+    {
+        $this->container['note'] = $note;
 
         return $this;
     }
@@ -376,6 +391,30 @@ class Body implements ModelInterface, ArrayAccess
     public function setCodepoolId($codepoolId)
     {
         $this->container['codepoolId'] = $codepoolId;
+
+        return $this;
+    }
+
+    /**
+     * Gets quantity
+     *
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->container['quantity'];
+    }
+
+    /**
+     * Sets quantity
+     *
+     * @param int $quantity quantity
+     *
+     * @return $this
+     */
+    public function setQuantity($quantity)
+    {
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * OrCondition
+ * PostalCodeValidation
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * OrCondition Class Doc Comment
+ * PostalCodeValidation Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class OrCondition extends Condition 
+class PostalCodeValidation extends ShippingCostValidation 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class OrCondition extends Condition
       *
       * @var string
       */
-    protected static $swaggerModelName = 'OrCondition';
+    protected static $swaggerModelName = 'PostalCodeValidation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,8 +55,7 @@ class OrCondition extends Condition
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'type' => 'string',
-        'conditions' => '\SSB\Api\Model\Condition[]'
+        'invalidPaymentMethod' => 'string'
     ];
 
     /**
@@ -65,8 +64,7 @@ class OrCondition extends Condition
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'type' => null,
-        'conditions' => null
+        'invalidPaymentMethod' => null
     ];
 
     /**
@@ -96,8 +94,7 @@ class OrCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'conditions' => 'conditions'
+        'invalidPaymentMethod' => 'invalidPaymentMethod'
     ];
 
     /**
@@ -106,8 +103,7 @@ class OrCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'conditions' => 'setConditions'
+        'invalidPaymentMethod' => 'setInvalidPaymentMethod'
     ];
 
     /**
@@ -116,8 +112,7 @@ class OrCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'conditions' => 'getConditions'
+        'invalidPaymentMethod' => 'getInvalidPaymentMethod'
     ];
 
     /**
@@ -176,8 +171,7 @@ class OrCondition extends Condition
     {
         parent::__construct($data);
 
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+        $this->container['invalidPaymentMethod'] = isset($data['invalidPaymentMethod']) ? $data['invalidPaymentMethod'] : null;
     }
 
     /**
@@ -189,6 +183,9 @@ class OrCondition extends Condition
     {
         $invalidProperties = parent::listInvalidProperties();
 
+        if ($this->container['invalidPaymentMethod'] === null) {
+            $invalidProperties[] = "'invalidPaymentMethod' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -205,49 +202,25 @@ class OrCondition extends Condition
 
 
     /**
-     * Gets type
+     * Gets invalidPaymentMethod
      *
      * @return string
      */
-    public function getType()
+    public function getInvalidPaymentMethod()
     {
-        return $this->container['type'];
+        return $this->container['invalidPaymentMethod'];
     }
 
     /**
-     * Sets type
+     * Sets invalidPaymentMethod
      *
-     * @param string $type type
+     * @param string $invalidPaymentMethod 
      *
      * @return $this
      */
-    public function setType($type)
+    public function setInvalidPaymentMethod($invalidPaymentMethod)
     {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets conditions
-     *
-     * @return \SSB\Api\Model\Condition[]
-     */
-    public function getConditions()
-    {
-        return $this->container['conditions'];
-    }
-
-    /**
-     * Sets conditions
-     *
-     * @param \SSB\Api\Model\Condition[] $conditions conditions
-     *
-     * @return $this
-     */
-    public function setConditions($conditions)
-    {
-        $this->container['conditions'] = $conditions;
+        $this->container['invalidPaymentMethod'] = $invalidPaymentMethod;
 
         return $this;
     }

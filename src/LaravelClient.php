@@ -4,7 +4,7 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 
 class LaravelClient extends Client
-{
+{    
     public function handleError(\Exception $e, array $context): void
     {
         if (!\App::environment('production')) {

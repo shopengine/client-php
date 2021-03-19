@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -67,6 +67,7 @@ class ShippingCost implements ModelInterface, ArrayAccess
         'orderDeadline' => 'string',
         'validation' => '\SSB\Api\Model\ShippingCostValidation[]',
         'originIdentification' => 'string',
+        'sortWeight' => 'int',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -87,6 +88,7 @@ class ShippingCost implements ModelInterface, ArrayAccess
         'orderDeadline' => null,
         'validation' => null,
         'originIdentification' => null,
+        'sortWeight' => null,
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -128,6 +130,7 @@ class ShippingCost implements ModelInterface, ArrayAccess
         'orderDeadline' => 'orderDeadline',
         'validation' => 'validation',
         'originIdentification' => 'originIdentification',
+        'sortWeight' => 'sortWeight',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -148,6 +151,7 @@ class ShippingCost implements ModelInterface, ArrayAccess
         'orderDeadline' => 'setOrderDeadline',
         'validation' => 'setValidation',
         'originIdentification' => 'setOriginIdentification',
+        'sortWeight' => 'setSortWeight',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -168,6 +172,7 @@ class ShippingCost implements ModelInterface, ArrayAccess
         'orderDeadline' => 'getOrderDeadline',
         'validation' => 'getValidation',
         'originIdentification' => 'getOriginIdentification',
+        'sortWeight' => 'getSortWeight',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -257,6 +262,7 @@ class ShippingCost implements ModelInterface, ArrayAccess
         $this->container['orderDeadline'] = isset($data['orderDeadline']) ? $data['orderDeadline'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
         $this->container['originIdentification'] = isset($data['originIdentification']) ? $data['originIdentification'] : null;
+        $this->container['sortWeight'] = isset($data['sortWeight']) ? $data['sortWeight'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -538,6 +544,30 @@ class ShippingCost implements ModelInterface, ArrayAccess
     public function setOriginIdentification($originIdentification)
     {
         $this->container['originIdentification'] = $originIdentification;
+
+        return $this;
+    }
+
+    /**
+     * Gets sortWeight
+     *
+     * @return int
+     */
+    public function getSortWeight()
+    {
+        return $this->container['sortWeight'];
+    }
+
+    /**
+     * Sets sortWeight
+     *
+     * @param int $sortWeight sortWeight
+     *
+     * @return $this
+     */
+    public function setSortWeight($sortWeight)
+    {
+        $this->container['sortWeight'] = $sortWeight;
 
         return $this;
     }

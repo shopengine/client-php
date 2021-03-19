@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -60,8 +60,7 @@ class Body3 implements ModelInterface, ArrayAccess
         'name' => 'string',
         'conditionSetVersionId' => 'int',
         'status' => 'string',
-        'validation' => '\SSB\Api\Model\Validation[]',
-        'note' => 'string'
+        'validation' => '\SSB\Api\Model\Validation[]'
     ];
 
     /**
@@ -73,8 +72,7 @@ class Body3 implements ModelInterface, ArrayAccess
         'name' => null,
         'conditionSetVersionId' => null,
         'status' => null,
-        'validation' => null,
-        'note' => null
+        'validation' => null
     ];
 
     /**
@@ -107,8 +105,7 @@ class Body3 implements ModelInterface, ArrayAccess
         'name' => 'name',
         'conditionSetVersionId' => 'conditionSetVersionId',
         'status' => 'status',
-        'validation' => 'validation',
-        'note' => 'note'
+        'validation' => 'validation'
     ];
 
     /**
@@ -120,8 +117,7 @@ class Body3 implements ModelInterface, ArrayAccess
         'name' => 'setName',
         'conditionSetVersionId' => 'setConditionSetVersionId',
         'status' => 'setStatus',
-        'validation' => 'setValidation',
-        'note' => 'setNote'
+        'validation' => 'setValidation'
     ];
 
     /**
@@ -133,8 +129,7 @@ class Body3 implements ModelInterface, ArrayAccess
         'name' => 'getName',
         'conditionSetVersionId' => 'getConditionSetVersionId',
         'status' => 'getStatus',
-        'validation' => 'getValidation',
-        'note' => 'getNote'
+        'validation' => 'getValidation'
     ];
 
     /**
@@ -216,7 +211,6 @@ class Body3 implements ModelInterface, ArrayAccess
         $this->container['conditionSetVersionId'] = isset($data['conditionSetVersionId']) ? $data['conditionSetVersionId'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
-        $this->container['note'] = isset($data['note']) ? $data['note'] : '';
     }
 
     /**
@@ -364,30 +358,6 @@ class Body3 implements ModelInterface, ArrayAccess
     public function setValidation($validation)
     {
         $this->container['validation'] = $validation;
-
-        return $this;
-    }
-
-    /**
-     * Gets note
-     *
-     * @return string
-     */
-    public function getNote()
-    {
-        return $this->container['note'];
-    }
-
-    /**
-     * Sets note
-     *
-     * @param string $note note
-     *
-     * @return $this
-     */
-    public function setNote($note)
-    {
-        $this->container['note'] = $note;
 
         return $this;
     }

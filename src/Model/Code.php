@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -68,6 +68,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetActive' => '\SSB\Api\Model\ConditionSet',
         'conditionSetName' => 'string',
         'conditionSetId' => 'string',
+        'conditionSetVersionId' => 'string',
         'codepoolName' => 'string',
         'updatedAt' => '\DateTime',
         'createdAt' => '\DateTime',
@@ -93,6 +94,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetActive' => null,
         'conditionSetName' => null,
         'conditionSetId' => null,
+        'conditionSetVersionId' => null,
         'codepoolName' => null,
         'updatedAt' => 'date-time',
         'createdAt' => 'date-time',
@@ -139,6 +141,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetActive' => 'conditionSetActive',
         'conditionSetName' => 'conditionSetName',
         'conditionSetId' => 'conditionSetId',
+        'conditionSetVersionId' => 'conditionSetVersionId',
         'codepoolName' => 'codepoolName',
         'updatedAt' => 'updatedAt',
         'createdAt' => 'createdAt',
@@ -164,6 +167,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetActive' => 'setConditionSetActive',
         'conditionSetName' => 'setConditionSetName',
         'conditionSetId' => 'setConditionSetId',
+        'conditionSetVersionId' => 'setConditionSetVersionId',
         'codepoolName' => 'setCodepoolName',
         'updatedAt' => 'setUpdatedAt',
         'createdAt' => 'setCreatedAt',
@@ -189,6 +193,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetActive' => 'getConditionSetActive',
         'conditionSetName' => 'getConditionSetName',
         'conditionSetId' => 'getConditionSetId',
+        'conditionSetVersionId' => 'getConditionSetVersionId',
         'codepoolName' => 'getCodepoolName',
         'updatedAt' => 'getUpdatedAt',
         'createdAt' => 'getCreatedAt',
@@ -283,6 +288,7 @@ class Code implements ModelInterface, ArrayAccess
         $this->container['conditionSetActive'] = isset($data['conditionSetActive']) ? $data['conditionSetActive'] : null;
         $this->container['conditionSetName'] = isset($data['conditionSetName']) ? $data['conditionSetName'] : null;
         $this->container['conditionSetId'] = isset($data['conditionSetId']) ? $data['conditionSetId'] : null;
+        $this->container['conditionSetVersionId'] = isset($data['conditionSetVersionId']) ? $data['conditionSetVersionId'] : null;
         $this->container['codepoolName'] = isset($data['codepoolName']) ? $data['codepoolName'] : null;
         $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
@@ -592,6 +598,30 @@ class Code implements ModelInterface, ArrayAccess
     public function setConditionSetId($conditionSetId)
     {
         $this->container['conditionSetId'] = $conditionSetId;
+
+        return $this;
+    }
+
+    /**
+     * Gets conditionSetVersionId
+     *
+     * @return string
+     */
+    public function getConditionSetVersionId()
+    {
+        return $this->container['conditionSetVersionId'];
+    }
+
+    /**
+     * Sets conditionSetVersionId
+     *
+     * @param string $conditionSetVersionId conditionSetVersionId
+     *
+     * @return $this
+     */
+    public function setConditionSetVersionId($conditionSetVersionId)
+    {
+        $this->container['conditionSetVersionId'] = $conditionSetVersionId;
 
         return $this;
     }

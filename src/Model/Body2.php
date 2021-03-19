@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:  *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -60,7 +60,8 @@ class Body2 implements ModelInterface, ArrayAccess
         'name' => 'string',
         'conditionSetVersionId' => 'int',
         'status' => 'string',
-        'validation' => '\SSB\Api\Model\Validation[]'
+        'validation' => '\SSB\Api\Model\EmailValidation[]',
+        'note' => 'string'
     ];
 
     /**
@@ -72,7 +73,8 @@ class Body2 implements ModelInterface, ArrayAccess
         'name' => null,
         'conditionSetVersionId' => null,
         'status' => null,
-        'validation' => null
+        'validation' => null,
+        'note' => null
     ];
 
     /**
@@ -105,7 +107,8 @@ class Body2 implements ModelInterface, ArrayAccess
         'name' => 'name',
         'conditionSetVersionId' => 'conditionSetVersionId',
         'status' => 'status',
-        'validation' => 'validation'
+        'validation' => 'validation',
+        'note' => 'note'
     ];
 
     /**
@@ -117,7 +120,8 @@ class Body2 implements ModelInterface, ArrayAccess
         'name' => 'setName',
         'conditionSetVersionId' => 'setConditionSetVersionId',
         'status' => 'setStatus',
-        'validation' => 'setValidation'
+        'validation' => 'setValidation',
+        'note' => 'setNote'
     ];
 
     /**
@@ -129,7 +133,8 @@ class Body2 implements ModelInterface, ArrayAccess
         'name' => 'getName',
         'conditionSetVersionId' => 'getConditionSetVersionId',
         'status' => 'getStatus',
-        'validation' => 'getValidation'
+        'validation' => 'getValidation',
+        'note' => 'getNote'
     ];
 
     /**
@@ -211,6 +216,7 @@ class Body2 implements ModelInterface, ArrayAccess
         $this->container['conditionSetVersionId'] = isset($data['conditionSetVersionId']) ? $data['conditionSetVersionId'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
+        $this->container['note'] = isset($data['note']) ? $data['note'] : '';
     }
 
     /**
@@ -222,6 +228,15 @@ class Body2 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['conditionSetVersionId'] === null) {
+            $invalidProperties[] = "'conditionSetVersionId' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -230,6 +245,9 @@ class Body2 implements ModelInterface, ArrayAccess
             );
         }
 
+        if ($this->container['validation'] === null) {
+            $invalidProperties[] = "'validation' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -313,7 +331,7 @@ class Body2 implements ModelInterface, ArrayAccess
     public function setStatus($status)
     {
         $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+        if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value for 'status', must be one of '%s'",
@@ -329,7 +347,7 @@ class Body2 implements ModelInterface, ArrayAccess
     /**
      * Gets validation
      *
-     * @return \SSB\Api\Model\Validation[]
+     * @return \SSB\Api\Model\EmailValidation[]
      */
     public function getValidation()
     {
@@ -339,13 +357,37 @@ class Body2 implements ModelInterface, ArrayAccess
     /**
      * Sets validation
      *
-     * @param \SSB\Api\Model\Validation[] $validation validation
+     * @param \SSB\Api\Model\EmailValidation[] $validation validation
      *
      * @return $this
      */
     public function setValidation($validation)
     {
         $this->container['validation'] = $validation;
+
+        return $this;
+    }
+
+    /**
+     * Gets note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->container['note'];
+    }
+
+    /**
+     * Sets note
+     *
+     * @param string $note note
+     *
+     * @return $this
+     */
+    public function setNote($note)
+    {
+        $this->container['note'] = $note;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * OrCondition
+ * PostboxValidation
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * OrCondition Class Doc Comment
+ * PostboxValidation Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class OrCondition extends Condition 
+class PostboxValidation extends ShippingCostValidation 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class OrCondition extends Condition
       *
       * @var string
       */
-    protected static $swaggerModelName = 'OrCondition';
+    protected static $swaggerModelName = 'PostboxValidation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,8 +55,7 @@ class OrCondition extends Condition
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'type' => 'string',
-        'conditions' => '\SSB\Api\Model\Condition[]'
+        
     ];
 
     /**
@@ -65,8 +64,7 @@ class OrCondition extends Condition
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'type' => null,
-        'conditions' => null
+        
     ];
 
     /**
@@ -96,8 +94,7 @@ class OrCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'conditions' => 'conditions'
+        
     ];
 
     /**
@@ -106,8 +103,7 @@ class OrCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'conditions' => 'setConditions'
+        
     ];
 
     /**
@@ -116,8 +112,7 @@ class OrCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'conditions' => 'getConditions'
+        
     ];
 
     /**
@@ -176,8 +171,6 @@ class OrCondition extends Condition
     {
         parent::__construct($data);
 
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
     }
 
     /**
@@ -203,54 +196,6 @@ class OrCondition extends Condition
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets conditions
-     *
-     * @return \SSB\Api\Model\Condition[]
-     */
-    public function getConditions()
-    {
-        return $this->container['conditions'];
-    }
-
-    /**
-     * Sets conditions
-     *
-     * @param \SSB\Api\Model\Condition[] $conditions conditions
-     *
-     * @return $this
-     */
-    public function setConditions($conditions)
-    {
-        $this->container['conditions'] = $conditions;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *
