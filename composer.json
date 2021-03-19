@@ -1,0 +1,31 @@
+{
+  "name": "ssb/api",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://shopshopbox.de",
+  "license": "proprietary",
+  "authors": [],
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "^6.2",
+    "moneyphp/money": "^3.0",
+    "illuminate/support": ">=5.5"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "SSB\\Api\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SSB\\Api\\ServiceProvider"
+      ],
+      "aliases": {
+        "SSBApiClient": "SSB\\Api\\Facade"
+      }
+    }
+  }
+}
