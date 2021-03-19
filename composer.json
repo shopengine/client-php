@@ -1,8 +1,8 @@
 {
-  "name": "ssb/api",
+  "name": "brainspin/client-php",
   "description": "",
   "keywords": [],
-  "homepage": "https://shopshopbox.de",
+  "homepage": "https://brainspin.de",
   "license": "proprietary",
   "authors": [],
   "require": {
