@@ -7,7 +7,7 @@
   "authors": [],
   "require": {
     "php": ">=7.1",
-    "guzzlehttp/guzzle": "^6.2",
+    "guzzlehttp/guzzle": "^7.2",
     "moneyphp/money": "^3.0",
     "illuminate/support": ">=5.5"
   },
