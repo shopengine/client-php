@@ -1,6 +1,6 @@
 <?php
 /**
- * Body4
+ * PurchaseArticleBase
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * Body4 Class Doc Comment
+ * PurchaseArticleBase Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Body4 implements ModelInterface, ArrayAccess
+class PurchaseArticleBase implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class Body4 implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'body_4';
+    protected static $swaggerModelName = 'PurchaseArticleBase';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,10 +56,12 @@ class Body4 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-'description' => 'string',
-'trackingSlug' => 'string',
-'defaultConditionSetAggregateId' => 'string'    ];
+        'className' => 'string',
+'price' => '\SSB\Api\Model\Money',
+'name' => 'string',
+'sku' => 'string',
+'tax' => 'float',
+'originalPrice' => '\SSB\Api\Model\Money'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -67,10 +69,12 @@ class Body4 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-'description' => null,
-'trackingSlug' => null,
-'defaultConditionSetAggregateId' => null    ];
+        'className' => null,
+'price' => null,
+'name' => null,
+'sku' => null,
+'tax' => 'float',
+'originalPrice' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -99,10 +103,12 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-'description' => 'description',
-'trackingSlug' => 'trackingSlug',
-'defaultConditionSetAggregateId' => 'defaultConditionSetAggregateId'    ];
+        'className' => 'className',
+'price' => 'price',
+'name' => 'name',
+'sku' => 'sku',
+'tax' => 'tax',
+'originalPrice' => 'originalPrice'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -110,10 +116,12 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-'description' => 'setDescription',
-'trackingSlug' => 'setTrackingSlug',
-'defaultConditionSetAggregateId' => 'setDefaultConditionSetAggregateId'    ];
+        'className' => 'setClassName',
+'price' => 'setPrice',
+'name' => 'setName',
+'sku' => 'setSku',
+'tax' => 'setTax',
+'originalPrice' => 'setOriginalPrice'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -121,10 +129,12 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-'description' => 'getDescription',
-'trackingSlug' => 'getTrackingSlug',
-'defaultConditionSetAggregateId' => 'getDefaultConditionSetAggregateId'    ];
+        'className' => 'getClassName',
+'price' => 'getPrice',
+'name' => 'getName',
+'sku' => 'getSku',
+'tax' => 'getTax',
+'originalPrice' => 'getOriginalPrice'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -184,10 +194,12 @@ class Body4 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['className'] = isset($data['className']) ? $data['className'] : null;
+        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
-        $this->container['defaultConditionSetAggregateId'] = isset($data['defaultConditionSetAggregateId']) ? $data['defaultConditionSetAggregateId'] : null;
+        $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
+        $this->container['tax'] = isset($data['tax']) ? $data['tax'] : null;
+        $this->container['originalPrice'] = isset($data['originalPrice']) ? $data['originalPrice'] : null;
     }
 
     /**
@@ -199,14 +211,8 @@ class Body4 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['trackingSlug'] === null) {
-            $invalidProperties[] = "'trackingSlug' can't be null";
+        if ($this->container['className'] === null) {
+            $invalidProperties[] = "'className' can't be null";
         }
         return $invalidProperties;
     }
@@ -224,6 +230,54 @@ class Body4 implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets className
+     *
+     * @return string
+     */
+    public function getClassName()
+    {
+        return $this->container['className'];
+    }
+
+    /**
+     * Sets className
+     *
+     * @param string $className className
+     *
+     * @return $this
+     */
+    public function setClassName($className)
+    {
+        $this->container['className'] = $className;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getPrice()
+    {
+        return $this->container['price'];
+    }
+
+    /**
+     * Sets price
+     *
+     * @param \SSB\Api\Model\Money $price price
+     *
+     * @return $this
+     */
+    public function setPrice($price)
+    {
+        $this->container['price'] = $price;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
      * @return string
@@ -236,7 +290,7 @@ class Body4 implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string $name Name of the Article
      *
      * @return $this
      */
@@ -248,73 +302,73 @@ class Body4 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets description
+     * Gets sku
      *
      * @return string
      */
-    public function getDescription()
+    public function getSku()
     {
-        return $this->container['description'];
+        return $this->container['sku'];
     }
 
     /**
-     * Sets description
+     * Sets sku
      *
-     * @param string $description description
+     * @param string $sku Sku of the Article
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setSku($sku)
     {
-        $this->container['description'] = $description;
+        $this->container['sku'] = $sku;
 
         return $this;
     }
 
     /**
-     * Gets trackingSlug
+     * Gets tax
      *
-     * @return string
+     * @return float
      */
-    public function getTrackingSlug()
+    public function getTax()
     {
-        return $this->container['trackingSlug'];
+        return $this->container['tax'];
     }
 
     /**
-     * Sets trackingSlug
+     * Sets tax
      *
-     * @param string $trackingSlug trackingSlug
+     * @param float $tax Tax of the Article
      *
      * @return $this
      */
-    public function setTrackingSlug($trackingSlug)
+    public function setTax($tax)
     {
-        $this->container['trackingSlug'] = $trackingSlug;
+        $this->container['tax'] = $tax;
 
         return $this;
     }
 
     /**
-     * Gets defaultConditionSetAggregateId
+     * Gets originalPrice
      *
-     * @return string
+     * @return \SSB\Api\Model\Money
      */
-    public function getDefaultConditionSetAggregateId()
+    public function getOriginalPrice()
     {
-        return $this->container['defaultConditionSetAggregateId'];
+        return $this->container['originalPrice'];
     }
 
     /**
-     * Sets defaultConditionSetAggregateId
+     * Sets originalPrice
      *
-     * @param string $defaultConditionSetAggregateId defaultConditionSetAggregateId
+     * @param \SSB\Api\Model\Money $originalPrice originalPrice
      *
      * @return $this
      */
-    public function setDefaultConditionSetAggregateId($defaultConditionSetAggregateId)
+    public function setOriginalPrice($originalPrice)
     {
-        $this->container['defaultConditionSetAggregateId'] = $defaultConditionSetAggregateId;
+        $this->container['originalPrice'] = $originalPrice;
 
         return $this;
     }

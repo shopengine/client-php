@@ -1,6 +1,6 @@
 <?php
 /**
- * Body4
+ * ArticleBundleConfiguration
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * Body4 Class Doc Comment
+ * ArticleBundleConfiguration Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Body4 implements ModelInterface, ArrayAccess
+class ArticleBundleConfiguration implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class Body4 implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'body_4';
+    protected static $swaggerModelName = 'ArticleBundleConfiguration';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,10 +56,9 @@ class Body4 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-'description' => 'string',
-'trackingSlug' => 'string',
-'defaultConditionSetAggregateId' => 'string'    ];
+        'id' => 'string',
+'articles' => '\SSB\Api\Model\ArticleBundleConfigurationArticle[]',
+'validations' => '\SSB\Api\Model\ArticleBundleConfigurationValidation[]'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -67,10 +66,9 @@ class Body4 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-'description' => null,
-'trackingSlug' => null,
-'defaultConditionSetAggregateId' => null    ];
+        'id' => null,
+'articles' => null,
+'validations' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -99,10 +97,9 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-'description' => 'description',
-'trackingSlug' => 'trackingSlug',
-'defaultConditionSetAggregateId' => 'defaultConditionSetAggregateId'    ];
+        'id' => 'id',
+'articles' => 'articles',
+'validations' => 'validations'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -110,10 +107,9 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-'description' => 'setDescription',
-'trackingSlug' => 'setTrackingSlug',
-'defaultConditionSetAggregateId' => 'setDefaultConditionSetAggregateId'    ];
+        'id' => 'setId',
+'articles' => 'setArticles',
+'validations' => 'setValidations'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -121,10 +117,9 @@ class Body4 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-'description' => 'getDescription',
-'trackingSlug' => 'getTrackingSlug',
-'defaultConditionSetAggregateId' => 'getDefaultConditionSetAggregateId'    ];
+        'id' => 'getId',
+'articles' => 'getArticles',
+'validations' => 'getValidations'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -184,10 +179,9 @@ class Body4 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
-        $this->container['defaultConditionSetAggregateId'] = isset($data['defaultConditionSetAggregateId']) ? $data['defaultConditionSetAggregateId'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['articles'] = isset($data['articles']) ? $data['articles'] : null;
+        $this->container['validations'] = isset($data['validations']) ? $data['validations'] : null;
     }
 
     /**
@@ -199,15 +193,6 @@ class Body4 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['trackingSlug'] === null) {
-            $invalidProperties[] = "'trackingSlug' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -224,97 +209,73 @@ class Body4 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets id
      *
      * @return string
      */
-    public function getName()
+    public function getId()
     {
-        return $this->container['name'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets name
+     * Sets id
      *
-     * @param string $name name
+     * @param string $id id
      *
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->container['name'] = $name;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets articles
      *
-     * @return string
+     * @return \SSB\Api\Model\ArticleBundleConfigurationArticle[]
      */
-    public function getDescription()
+    public function getArticles()
     {
-        return $this->container['description'];
+        return $this->container['articles'];
     }
 
     /**
-     * Sets description
+     * Sets articles
      *
-     * @param string $description description
+     * @param \SSB\Api\Model\ArticleBundleConfigurationArticle[] $articles articles
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setArticles($articles)
     {
-        $this->container['description'] = $description;
+        $this->container['articles'] = $articles;
 
         return $this;
     }
 
     /**
-     * Gets trackingSlug
+     * Gets validations
      *
-     * @return string
+     * @return \SSB\Api\Model\ArticleBundleConfigurationValidation[]
      */
-    public function getTrackingSlug()
+    public function getValidations()
     {
-        return $this->container['trackingSlug'];
+        return $this->container['validations'];
     }
 
     /**
-     * Sets trackingSlug
+     * Sets validations
      *
-     * @param string $trackingSlug trackingSlug
+     * @param \SSB\Api\Model\ArticleBundleConfigurationValidation[] $validations validations
      *
      * @return $this
      */
-    public function setTrackingSlug($trackingSlug)
+    public function setValidations($validations)
     {
-        $this->container['trackingSlug'] = $trackingSlug;
-
-        return $this;
-    }
-
-    /**
-     * Gets defaultConditionSetAggregateId
-     *
-     * @return string
-     */
-    public function getDefaultConditionSetAggregateId()
-    {
-        return $this->container['defaultConditionSetAggregateId'];
-    }
-
-    /**
-     * Sets defaultConditionSetAggregateId
-     *
-     * @param string $defaultConditionSetAggregateId defaultConditionSetAggregateId
-     *
-     * @return $this
-     */
-    public function setDefaultConditionSetAggregateId($defaultConditionSetAggregateId)
-    {
-        $this->container['defaultConditionSetAggregateId'] = $defaultConditionSetAggregateId;
+        $this->container['validations'] = $validations;
 
         return $this;
     }
