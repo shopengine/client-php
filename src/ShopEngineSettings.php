@@ -40,7 +40,7 @@ class ShopEngineSettings implements ShopEngineSettingsInterface
         return $this->secret;
     }
 
-    public function toArray() : array 
+    public function settingArray() : array 
     {
         return [
             'server' => $this->getShopEngineServer(),

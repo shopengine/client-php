@@ -9,5 +9,5 @@ interface ShopEngineSettingsInterface
     
     public function getShopEngineSecret() : string;
 
-    public function toArray() : array;
+    public function settingArray() : array;
 }
