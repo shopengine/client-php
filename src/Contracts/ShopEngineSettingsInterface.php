@@ -8,4 +8,6 @@ interface ShopEngineSettingsInterface
     public function getShopEngineShopIdentifier() : string;
     
     public function getShopEngineSecret() : string;
+
+    public function toArray() : array;
 }
