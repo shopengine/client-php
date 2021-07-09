@@ -46,6 +46,6 @@ class ShopEngineSettings implements ShopEngineSettingsInterface
             'server' => $this->getShopEngineServer(),
             'shopIdentifier' => $this->getShopEngineShopIdentifier(),
             'secret' => $this->getShopEngineSecret()
-        ]
+        ];
     }
 }
