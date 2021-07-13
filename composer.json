@@ -14,7 +14,7 @@
   "require-dev": {
   },
   "autoload": {
-    "psr-4": {ShopEngineSettings
+    "psr-4": {
       "SSB\\Api\\": "src/"
     }
   },
