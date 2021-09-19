@@ -60,7 +60,7 @@ class Client
         $timestamp = time();
         $signature = $this->makeSignature(http_build_query($parameter + $postParameter), $timestamp);
 
-        $client = new GuzzleClient(['base_uri' => $this->apiUrl]);
+        $client = new GuzzleClient();
 
         try {
             $requestQuery = http_build_query(array_merge(
@@ -68,7 +68,7 @@ class Client
                 ['timestamp' => $timestamp, 'signature' => $signature]
             ));
 
-            $url = self::API_VERSION . "/{$this->shop}/$resource?$requestQuery";
+            $url = $this->apiUrl . '/' . self::API_VERSION . "/{$this->shop}/$resource?$requestQuery";
 
             $response = $client->request(
                 $method,
