@@ -1,4 +1,6 @@
-<?php namespace SSB\Api;
+<?php
+
+namespace SSB\Api;
 
 use DebugBar\DataCollector\DataCollector;
 use DebugBar\DataCollector\Renderable;

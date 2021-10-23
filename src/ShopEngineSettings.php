@@ -1,4 +1,6 @@
-<?php namespace SSB\Api;
+<?php
+
+namespace SSB\Api;
 
 use SSB\Api\Contracts\ShopEngineSettingsInterface;
 
@@ -40,7 +42,7 @@ class ShopEngineSettings implements ShopEngineSettingsInterface
         return $this->secret;
     }
 
-    public function settingArray() : array 
+    public function settingArray(): array
     {
         return [
             'server' => $this->getShopEngineServer(),

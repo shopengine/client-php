@@ -1,4 +1,6 @@
-<?php namespace SSB\Api;
+<?php
+
+namespace SSB\Api;
 
 use GuzzleHttp\Client as GuzzleClient;
 use SSB\Api\Contracts\ShopEngineSettingsInterface;
