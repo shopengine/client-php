@@ -61,7 +61,8 @@ class ConditionSet implements ModelInterface, ArrayAccess
         'conditions' => '\SSB\Api\Model\Condition[]',
         'group' => 'int',
         'versionId' => 'int',
-        'aggregateId' => 'string'
+        'aggregateId' => 'string',
+        'updatedAt' => '\DateTime',
     ];
 
     /**
@@ -74,7 +75,8 @@ class ConditionSet implements ModelInterface, ArrayAccess
         'conditions' => null,
         'group' => null,
         'versionId' => null,
-        'aggregateId' => null
+        'aggregateId' => null,
+        'updatedAt' => 'date-time',
     ];
 
     /**
@@ -108,7 +110,8 @@ class ConditionSet implements ModelInterface, ArrayAccess
         'conditions' => 'conditions',
         'group' => 'group',
         'versionId' => 'versionId',
-        'aggregateId' => 'aggregateId'
+        'aggregateId' => 'aggregateId',
+        'updatedAt' => 'updatedAt',
     ];
 
     /**
@@ -121,7 +124,8 @@ class ConditionSet implements ModelInterface, ArrayAccess
         'conditions' => 'setConditions',
         'group' => 'setGroup',
         'versionId' => 'setVersionId',
-        'aggregateId' => 'setAggregateId'
+        'aggregateId' => 'setAggregateId',
+        'updatedAt' => 'setUpdatedAt',
     ];
 
     /**
@@ -134,7 +138,8 @@ class ConditionSet implements ModelInterface, ArrayAccess
         'conditions' => 'getConditions',
         'group' => 'getGroup',
         'versionId' => 'getVersionId',
-        'aggregateId' => 'getAggregateId'
+        'aggregateId' => 'getAggregateId',
+        'updatedAt' => 'getUpdatedAt',
     ];
 
     /**
@@ -202,6 +207,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
         $this->container['group'] = isset($data['group']) ? $data['group'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
+        $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
     }
 
     /**
@@ -347,6 +353,31 @@ class ConditionSet implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime $updatedAt updatedAt
+     *
+     * @return $this
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
+
+        return $this;
+    }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
