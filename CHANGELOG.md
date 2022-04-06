@@ -13,6 +13,10 @@ This project does adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Require sentry/sentry-laravel
 - Swagger Model Update for ArticleBundles
 
+## [2.1.0] - 2021-10-23
+### Added
+- Added updatedAt property to conditionset
+
 ## [2.0.0] - 2021-10-23
 ### Added
 - ShopEngineSettingsInterface to resolve a shop
