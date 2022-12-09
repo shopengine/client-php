@@ -33,7 +33,9 @@ class LaravelClient extends Client
         }
 
         try {
-            app('sentry')->captureException($e, ['extra' => $context]);
+            $hint        = new Sentry\EventHint();
+            $hint->extra = $context;
+            app('sentry')->captureException($e, $hint);
         }
         catch (\Exception $e) {
         }
