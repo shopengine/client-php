@@ -13,6 +13,10 @@ This project does adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Require sentry/sentry-laravel
 - Swagger Model Update for ArticleBundles
 
+## [2.2.1] - 2022-12-12
+### Changed
+- Update sentry/sentry-laravel to v3
+
 ## [2.2.0] - 2022-11-11
 ### Added
 - Add withhold_import origin status
