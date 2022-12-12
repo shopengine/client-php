@@ -4,6 +4,7 @@ namespace SSB\Api;
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
+use Sentry\EventHint;
 
 class LaravelClient extends Client
 {
@@ -32,10 +33,12 @@ class LaravelClient extends Client
             }
         }
 
-        try {
-            app('sentry')->captureException($e, ['extra' => $context]);
-        }
-        catch (\Exception $e) {
+        if (app()->bound('sentry')) {
+            $hint        = new EventHint();
+            $hint->extra = $context;
+            app('sentry')->captureException($e, $hint);
+        } else {
+            report($e);
         }
     }
 
