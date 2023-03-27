@@ -2,15 +2,18 @@
 
 namespace SSB\Api;
 
+use App;
+use Exception;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
+use Log;
 use Sentry\EventHint;
 
 class LaravelClient extends Client
-{    
-    public function handleError(\Exception $e, array $context): void
+{
+    public function handleError(Exception $e, array $context): void
     {
-        if (!\App::environment('production')) {
+        if (!App::environment('production')) {
             $logContext = $context;
 
             $message = 'Undefined';
@@ -20,23 +23,21 @@ class LaravelClient extends Client
                 $message = $e->getMessage();
             }
 
-            \Log::error($message, $logContext);
+            Log::error($message, $logContext);
 
             if (
                 get_class($e) === ServerException::class ||
                 get_class($e) === ClientException::class
             ) {
                 die($e->getResponse()->getBody() . '');
-            }
-            else {
+            } else {
                 dd([$context, $e]);
             }
         }
 
         try {
             app('sentry')->captureException($e, EventHint::fromArray(['extra' => $context]));
-        }
-        catch (\Exception $e) {
+        } catch (Exception $e) {
         }
     }
 

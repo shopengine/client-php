@@ -1,4 +1,7 @@
-<?php namespace SSB\Api;
+<?php
+namespace SSB\Api;
+
+use Exception;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -11,20 +14,19 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 //      todo: disabled due to fixed api url config
 //      $this->initDebugBar();
     }
-    
-    private function initDebugBar() {
+
+    public function boot()
+    {
+    }
+
+    private function initDebugBar()
+    {
         if (class_exists('Barryvdh\Debugbar\LaravelDebugbar')) {
             $debugbar = $this->app->make('debugbar');
             try {
                 $debugbar->addCollector(new ApiCollector());
-            }
-            catch (\Exception $e) {
-            
+            } catch (Exception $e) {
             }
         }
-    }
-
-    public function boot()
-    {
     }
 }

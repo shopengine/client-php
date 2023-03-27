@@ -1,4 +1,5 @@
-<?php namespace SSB\Api;
+<?php
+namespace SSB\Api;
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {
