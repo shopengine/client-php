@@ -64,7 +64,6 @@ class PercentageModifierCondition extends Condition
         'applyToArticles' => 'string[]',
         'percentage' => 'bool'
     ];
-
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -88,7 +87,6 @@ class PercentageModifierCondition extends Condition
         'applyToArticles' => 'applyToArticles',
         'percentage' => 'percentage'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -100,7 +98,6 @@ class PercentageModifierCondition extends Condition
         'applyToArticles' => 'setApplyToArticles',
         'percentage' => 'setPercentage'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *

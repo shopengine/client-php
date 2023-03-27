@@ -79,7 +79,6 @@ class NeverArticleValidation extends ArticleValidation
         'type' => 'type',
         'id' => 'id'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -89,7 +88,6 @@ class NeverArticleValidation extends ArticleValidation
         'type' => 'setType',
         'id' => 'setId'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
@@ -99,6 +97,40 @@ class NeverArticleValidation extends ArticleValidation
         'type' => 'getType',
         'id' => 'getId'
     ];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function swaggerTypes()
+    {
+        return self::$swaggerTypes + parent::swaggerTypes();
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function swaggerFormats()
+    {
+        return self::$swaggerFormats + parent::swaggerFormats();
+    }
 
     /**
      * Array of attributes where the key is the local name,
@@ -142,17 +174,14 @@ class NeverArticleValidation extends ArticleValidation
     }
 
     /**
-     * Constructor
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
+     * @return bool True if all properties are valid
      */
-    public function __construct(array $data = null)
+    public function valid()
     {
-        parent::__construct($data);
-
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        return count($this->listInvalidProperties()) === 0;
     }
 
     /**
@@ -165,17 +194,6 @@ class NeverArticleValidation extends ArticleValidation
         $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
     }
 
     /**
@@ -229,10 +247,11 @@ class NeverArticleValidation extends ArticleValidation
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -241,10 +260,11 @@ class NeverArticleValidation extends ArticleValidation
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
@@ -253,11 +273,12 @@ class NeverArticleValidation extends ArticleValidation
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      * @param mixed $value Value to be set
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -270,10 +291,11 @@ class NeverArticleValidation extends ArticleValidation
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);

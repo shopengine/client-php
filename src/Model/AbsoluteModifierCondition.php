@@ -47,14 +47,12 @@ class AbsoluteModifierCondition extends Condition
     public const TARGET_TOTALS = 'totals';
     public const TARGET_SHIPPING = 'shipping';
     public const TARGET_ARTICLES = 'articles';
-
     /**
      * The original name of the model.
      *
      * @var string
      */
     protected static $swaggerModelName = 'AbsoluteModifierCondition';
-
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
@@ -66,7 +64,6 @@ class AbsoluteModifierCondition extends Condition
         'applyToArticles' => 'string[]',
         'percentage' => 'bool'
     ];
-
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -78,7 +75,6 @@ class AbsoluteModifierCondition extends Condition
         'applyToArticles' => null,
         'percentage' => null
     ];
-
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -91,7 +87,6 @@ class AbsoluteModifierCondition extends Condition
         'applyToArticles' => 'applyToArticles',
         'percentage' => 'percentage'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -103,7 +98,6 @@ class AbsoluteModifierCondition extends Condition
         'applyToArticles' => 'setApplyToArticles',
         'percentage' => 'setPercentage'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *

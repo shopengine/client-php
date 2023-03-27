@@ -86,7 +86,6 @@ class TimeArticleValidation extends ArticleValidation
         'type' => 'type',
         'id' => 'id'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -98,7 +97,6 @@ class TimeArticleValidation extends ArticleValidation
         'type' => 'setType',
         'id' => 'setId'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
@@ -111,6 +109,21 @@ class TimeArticleValidation extends ArticleValidation
         'id' => 'getId'
     ];
 
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        $this->container['start'] = isset($data['start']) ? $data['start'] : null;
+        $this->container['end'] = isset($data['end']) ? $data['end'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+    }
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -173,21 +186,15 @@ class TimeArticleValidation extends ArticleValidation
         return self::$swaggerModelName;
     }
 
-
     /**
-     * Constructor
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
+     * @return bool True if all properties are valid
      */
-    public function __construct(array $data = null)
+    public function valid()
     {
-        parent::__construct($data);
-
-        $this->container['start'] = isset($data['start']) ? $data['start'] : null;
-        $this->container['end'] = isset($data['end']) ? $data['end'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        return count($this->listInvalidProperties()) === 0;
     }
 
     /**
@@ -207,18 +214,6 @@ class TimeArticleValidation extends ArticleValidation
         }
         return $invalidProperties;
     }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
 
     /**
      * Gets start

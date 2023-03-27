@@ -58,10 +58,13 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
      */
     protected static $swaggerTypes = [
         'className' => 'string',
+        'id' => 'string',
         'price' => '\SSB\Api\Model\Money',
         'name' => 'string',
         'sku' => 'string',
         'tax' => 'float',
+        'quantity' => 'float',
+        'custom' => 'string[]',
         'originalPrice' => '\SSB\Api\Model\Money'
     ];
 
@@ -72,10 +75,13 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
      */
     protected static $swaggerFormats = [
         'className' => null,
+        'id' => null,
         'price' => null,
         'name' => null,
         'sku' => null,
         'tax' => 'float',
+        'quantity' => 'int',
+        'custom' => null,
         'originalPrice' => null
     ];
     /**
@@ -86,13 +92,15 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'className' => 'className',
+        'id' => 'id',
         'price' => 'price',
         'name' => 'name',
         'sku' => 'sku',
         'tax' => 'tax',
+        'quantity' => 'quantity',
+        'custom' => 'custom',
         'originalPrice' => 'originalPrice'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -100,13 +108,15 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'className' => 'setClassName',
+        'id' => 'setId',
         'price' => 'setPrice',
         'name' => 'setName',
         'sku' => 'setSku',
         'tax' => 'setTax',
+        'quantity' => 'setQuantity',
+        'custom' => 'setCustom',
         'originalPrice' => 'setOriginalPrice'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
@@ -114,10 +124,13 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'className' => 'getClassName',
+        'id' => 'getId',
         'price' => 'getPrice',
         'name' => 'getName',
         'sku' => 'getSku',
         'tax' => 'getTax',
+        'quantity' => 'getQuantity',
+        'custom' => 'getCustom',
         'originalPrice' => 'getOriginalPrice'
     ];
     /**
@@ -136,10 +149,13 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['className'] = isset($data['className']) ? $data['className'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
         $this->container['tax'] = isset($data['tax']) ? $data['tax'] : null;
+        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
+        $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
         $this->container['originalPrice'] = isset($data['originalPrice']) ? $data['originalPrice'] : null;
 
         // Initialize discriminator property with the model name.
@@ -259,6 +275,30 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id Id of the Article
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets price
      *
      * @return Money
@@ -350,6 +390,54 @@ class PurchaseArticleBase implements ModelInterface, ArrayAccess
     public function setTax($tax)
     {
         $this->container['tax'] = $tax;
+
+        return $this;
+    }
+
+    /**
+     * Gets quantity
+     *
+     * @return float
+     */
+    public function getQuantity()
+    {
+        return $this->container['quantity'];
+    }
+
+    /**
+     * Sets quantity
+     *
+     * @param float $quantity Quantity of the Article
+     *
+     * @return $this
+     */
+    public function setQuantity($quantity)
+    {
+        $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom
+     *
+     * @return string[]
+     */
+    public function getCustom()
+    {
+        return $this->container['custom'];
+    }
+
+    /**
+     * Sets custom
+     *
+     * @param string[] $custom Custom of the Article
+     *
+     * @return $this
+     */
+    public function setCustom($custom)
+    {
+        $this->container['custom'] = $custom;
 
         return $this;
     }

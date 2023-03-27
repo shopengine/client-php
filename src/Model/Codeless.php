@@ -76,7 +76,6 @@ class Codeless implements ModelInterface, ArrayAccess
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
-
     /**
      * Array of property to format mappings. Used for (de)serialization
      *

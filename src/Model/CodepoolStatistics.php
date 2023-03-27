@@ -107,7 +107,6 @@ class CodepoolStatistics implements ModelInterface, ArrayAccess
         'usageCount' => 'usageCount',
         'codeCount' => 'codeCount'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -126,7 +125,6 @@ class CodepoolStatistics implements ModelInterface, ArrayAccess
         'usageCount' => 'setUsageCount',
         'codeCount' => 'setCodeCount'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *

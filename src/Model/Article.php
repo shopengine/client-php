@@ -73,7 +73,6 @@ class Article implements ModelInterface, ArrayAccess
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
-
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -115,7 +114,6 @@ class Article implements ModelInterface, ArrayAccess
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -136,7 +134,6 @@ class Article implements ModelInterface, ArrayAccess
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *

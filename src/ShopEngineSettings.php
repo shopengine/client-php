@@ -1,4 +1,5 @@
 <?php
+
 namespace SSB\Api;
 
 use SSB\Api\Contracts\ShopEngineSettingsInterface;

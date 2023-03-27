@@ -79,7 +79,6 @@ class AbsolutePriceCondition extends Condition
         'value' => 'value',
         'applyToArticles' => 'applyToArticles'
     ];
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -89,7 +88,6 @@ class AbsolutePriceCondition extends Condition
         'value' => 'setValue',
         'applyToArticles' => 'setApplyToArticles'
     ];
-
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *

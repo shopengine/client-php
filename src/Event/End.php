@@ -1,4 +1,5 @@
 <?php
+
 namespace SSB\Api\Event;
 
 class End
