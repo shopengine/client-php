@@ -63,6 +63,7 @@ class Article implements ModelInterface, ArrayAccess
         'sku' => 'string',
         'price' => '\SSB\Api\Model\Money',
         'tax' => 'float',
+        'taxRates' => 'string[]',
         'status' => 'string',
         'netWeight' => 'int',
         'stock' => 'int',
@@ -83,6 +84,7 @@ class Article implements ModelInterface, ArrayAccess
         'sku' => null,
         'price' => null,
         'tax' => 'float',
+        'taxRates' => null,
         'status' => null,
         'netWeight' => null,
         'stock' => null,
@@ -104,6 +106,7 @@ class Article implements ModelInterface, ArrayAccess
         'sku' => 'sku',
         'price' => 'price',
         'tax' => 'tax',
+        'taxRates' => 'tax_rates',
         'status' => 'status',
         'netWeight' => 'netWeight',
         'stock' => 'stock',
@@ -124,6 +127,7 @@ class Article implements ModelInterface, ArrayAccess
         'sku' => 'setSku',
         'price' => 'setPrice',
         'tax' => 'setTax',
+        'taxRates' => 'setTaxRates',
         'status' => 'setStatus',
         'netWeight' => 'setNetWeight',
         'stock' => 'setStock',
@@ -144,6 +148,7 @@ class Article implements ModelInterface, ArrayAccess
         'sku' => 'getSku',
         'price' => 'getPrice',
         'tax' => 'getTax',
+        'taxRates' => 'getTaxRates',
         'status' => 'getStatus',
         'netWeight' => 'getNetWeight',
         'stock' => 'getStock',
@@ -383,6 +388,30 @@ class Article implements ModelInterface, ArrayAccess
     public function setTax($tax)
     {
         $this->container['tax'] = $tax;
+
+        return $this;
+    }
+
+    /**
+     * Gets taxRates
+     *
+     * @return string[]
+     */
+    public function getTaxRates()
+    {
+        return $this->container['taxRates'];
+    }
+
+    /**
+     * Sets taxRates
+     *
+     * @param string[] $taxRates Tax rates per country
+     *
+     * @return $this
+     */
+    public function setTaxRates($taxRates)
+    {
+        $this->container['taxRates'] = $taxRates;
 
         return $this;
     }

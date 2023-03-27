@@ -1,6 +1,6 @@
 <?php
 /**
- * PercentageModifierCondition
+ * LeftOverValidation
  *
  * PHP version 5
  *
@@ -28,43 +28,39 @@
 
 namespace SSB\Api\Model;
 
-use InvalidArgumentException;
 use ReturnTypeWillChange;
 use SSB\Api\ObjectSerializer;
 
 /**
- * PercentageModifierCondition Class Doc Comment
+ * LeftOverValidation Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class PercentageModifierCondition extends Condition
+class LeftOverValidation extends Validation
 {
     public const DISCRIMINATOR = null;
-    public const TARGET_SUB = 'sub';
-    public const TARGET_TOTALS = 'totals';
-    public const TARGET_SHIPPING = 'shipping';
-    public const TARGET_ARTICLES = 'articles';
+
     /**
      * The original name of the model.
      *
      * @var string
      */
-    protected static $swaggerModelName = 'PercentageModifierCondition';
+    protected static $swaggerModelName = 'LeftOverValidation';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'value' => 'int',
+        'value' => '\SSB\Api\Model\Money',
         'target' => 'string',
-        'applyToArticles' => 'string[]',
-        'articleFilters' => 'string[]',
-        'percentage' => 'bool'
+        'type' => 'string'
     ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -73,9 +69,7 @@ class PercentageModifierCondition extends Condition
     protected static $swaggerFormats = [
         'value' => null,
         'target' => null,
-        'applyToArticles' => null,
-        'articleFilters' => null,
-        'percentage' => null
+        'type' => null
     ];
     /**
      * Array of attributes where the key is the local name,
@@ -86,9 +80,7 @@ class PercentageModifierCondition extends Condition
     protected static $attributeMap = [
         'value' => 'value',
         'target' => 'target',
-        'applyToArticles' => 'applyToArticles',
-        'articleFilters' => 'articleFilters',
-        'percentage' => 'percentage'
+        'type' => 'type'
     ];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -98,9 +90,7 @@ class PercentageModifierCondition extends Condition
     protected static $setters = [
         'value' => 'setValue',
         'target' => 'setTarget',
-        'applyToArticles' => 'setApplyToArticles',
-        'articleFilters' => 'setArticleFilters',
-        'percentage' => 'setPercentage'
+        'type' => 'setType'
     ];
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -110,9 +100,7 @@ class PercentageModifierCondition extends Condition
     protected static $getters = [
         'value' => 'getValue',
         'target' => 'getTarget',
-        'applyToArticles' => 'getApplyToArticles',
-        'articleFilters' => 'getArticleFilters',
-        'percentage' => 'getPercentage'
+        'type' => 'getType'
     ];
 
     /**
@@ -127,9 +115,7 @@ class PercentageModifierCondition extends Condition
 
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
         $this->container['target'] = isset($data['target']) ? $data['target'] : null;
-        $this->container['applyToArticles'] = isset($data['applyToArticles']) ? $data['applyToArticles'] : null;
-        $this->container['articleFilters'] = isset($data['articleFilters']) ? $data['articleFilters'] : null;
-        $this->container['percentage'] = isset($data['percentage']) ? $data['percentage'] : true;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -213,36 +199,16 @@ class PercentageModifierCondition extends Condition
     {
         $invalidProperties = parent::listInvalidProperties();
 
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!is_null($this->container['target']) && !in_array($this->container['target'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'target', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
-
         return $invalidProperties;
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTargetAllowableValues()
-    {
-        return [
-            self::TARGET_SUB,
-            self::TARGET_TOTALS,
-            self::TARGET_SHIPPING,
-            self::TARGET_ARTICLES,
-        ];
     }
 
     /**
      * Gets value
      *
-     * @return int
+     * @return Money
      */
     public function getValue()
     {
@@ -252,7 +218,7 @@ class PercentageModifierCondition extends Condition
     /**
      * Sets value
      *
-     * @param int $value value
+     * @param Money $value value
      *
      * @return $this
      */
@@ -276,94 +242,37 @@ class PercentageModifierCondition extends Condition
     /**
      * Sets target
      *
-     * @param string $target target
+     * @param string $target Target
      *
      * @return $this
      */
     public function setTarget($target)
     {
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!is_null($target) && !in_array($target, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'target', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['target'] = $target;
 
         return $this;
     }
 
     /**
-     * Gets applyToArticles
+     * Gets type
      *
-     * @return string[]
+     * @return string
      */
-    public function getApplyToArticles()
+    public function getType()
     {
-        return $this->container['applyToArticles'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets applyToArticles
+     * Sets type
      *
-     * @param string[] $applyToArticles applyToArticles
+     * @param string $type type
      *
      * @return $this
      */
-    public function setApplyToArticles($applyToArticles)
+    public function setType($type)
     {
-        $this->container['applyToArticles'] = $applyToArticles;
-
-        return $this;
-    }
-
-    /**
-     * Gets articleFilters
-     *
-     * @return string[]
-     */
-    public function getArticleFilters()
-    {
-        return $this->container['articleFilters'];
-    }
-
-    /**
-     * Sets articleFilters
-     *
-     * @param string[] $articleFilters articleFilters
-     *
-     * @return $this
-     */
-    public function setArticleFilters($articleFilters)
-    {
-        $this->container['articleFilters'] = $articleFilters;
-
-        return $this;
-    }
-
-    /**
-     * Gets percentage
-     *
-     * @return bool
-     */
-    public function getPercentage()
-    {
-        return $this->container['percentage'];
-    }
-
-    /**
-     * Sets percentage
-     *
-     * @param bool $percentage percentage
-     *
-     * @return $this
-     */
-    public function setPercentage($percentage)
-    {
-        $this->container['percentage'] = $percentage;
+        $this->container['type'] = $type;
 
         return $this;
     }

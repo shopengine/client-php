@@ -62,6 +62,7 @@ class AbsoluteModifierCondition extends Condition
         'value' => '\SSB\Api\Model\Money',
         'target' => 'string',
         'applyToArticles' => 'string[]',
+        'articleFilters' => 'string[]',
         'percentage' => 'bool'
     ];
     /**
@@ -73,6 +74,7 @@ class AbsoluteModifierCondition extends Condition
         'value' => null,
         'target' => null,
         'applyToArticles' => null,
+        'articleFilters' => null,
         'percentage' => null
     ];
     /**
@@ -85,6 +87,7 @@ class AbsoluteModifierCondition extends Condition
         'value' => 'value',
         'target' => 'target',
         'applyToArticles' => 'applyToArticles',
+        'articleFilters' => 'articleFilters',
         'percentage' => 'percentage'
     ];
     /**
@@ -96,6 +99,7 @@ class AbsoluteModifierCondition extends Condition
         'value' => 'setValue',
         'target' => 'setTarget',
         'applyToArticles' => 'setApplyToArticles',
+        'articleFilters' => 'setArticleFilters',
         'percentage' => 'setPercentage'
     ];
     /**
@@ -107,6 +111,7 @@ class AbsoluteModifierCondition extends Condition
         'value' => 'getValue',
         'target' => 'getTarget',
         'applyToArticles' => 'getApplyToArticles',
+        'articleFilters' => 'getArticleFilters',
         'percentage' => 'getPercentage'
     ];
 
@@ -311,6 +316,30 @@ class AbsoluteModifierCondition extends Condition
     public function setApplyToArticles($applyToArticles)
     {
         $this->container['applyToArticles'] = $applyToArticles;
+
+        return $this;
+    }
+
+    /**
+     * Gets articleFilters
+     *
+     * @return string[]
+     */
+    public function getArticleFilters()
+    {
+        return $this->container['articleFilters'];
+    }
+
+    /**
+     * Sets articleFilters
+     *
+     * @param string[] $articleFilters articleFilters
+     *
+     * @return $this
+     */
+    public function setArticleFilters($articleFilters)
+    {
+        $this->container['articleFilters'] = $articleFilters;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * PercentageModifierCondition
+ * AddArticleBundleCondition
  *
  * PHP version 5
  *
@@ -28,54 +28,46 @@
 
 namespace SSB\Api\Model;
 
-use InvalidArgumentException;
 use ReturnTypeWillChange;
 use SSB\Api\ObjectSerializer;
 
 /**
- * PercentageModifierCondition Class Doc Comment
+ * AddArticleBundleCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class PercentageModifierCondition extends Condition
+class AddArticleBundleCondition extends Condition
 {
     public const DISCRIMINATOR = null;
-    public const TARGET_SUB = 'sub';
-    public const TARGET_TOTALS = 'totals';
-    public const TARGET_SHIPPING = 'shipping';
-    public const TARGET_ARTICLES = 'articles';
+
     /**
      * The original name of the model.
      *
      * @var string
      */
-    protected static $swaggerModelName = 'PercentageModifierCondition';
+    protected static $swaggerModelName = 'AddArticleBundleCondition';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'value' => 'int',
-        'target' => 'string',
-        'applyToArticles' => 'string[]',
-        'articleFilters' => 'string[]',
-        'percentage' => 'bool'
+        'loadByAttribute' => 'string',
+        'articleBundles' => 'string[]'
     ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'value' => null,
-        'target' => null,
-        'applyToArticles' => null,
-        'articleFilters' => null,
-        'percentage' => null
+        'loadByAttribute' => null,
+        'articleBundles' => null
     ];
     /**
      * Array of attributes where the key is the local name,
@@ -84,11 +76,8 @@ class PercentageModifierCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value',
-        'target' => 'target',
-        'applyToArticles' => 'applyToArticles',
-        'articleFilters' => 'articleFilters',
-        'percentage' => 'percentage'
+        'loadByAttribute' => 'loadByAttribute',
+        'articleBundles' => 'articleBundles'
     ];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -96,11 +85,8 @@ class PercentageModifierCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue',
-        'target' => 'setTarget',
-        'applyToArticles' => 'setApplyToArticles',
-        'articleFilters' => 'setArticleFilters',
-        'percentage' => 'setPercentage'
+        'loadByAttribute' => 'setLoadByAttribute',
+        'articleBundles' => 'setArticleBundles'
     ];
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -108,11 +94,8 @@ class PercentageModifierCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue',
-        'target' => 'getTarget',
-        'applyToArticles' => 'getApplyToArticles',
-        'articleFilters' => 'getArticleFilters',
-        'percentage' => 'getPercentage'
+        'loadByAttribute' => 'getLoadByAttribute',
+        'articleBundles' => 'getArticleBundles'
     ];
 
     /**
@@ -125,11 +108,8 @@ class PercentageModifierCondition extends Condition
     {
         parent::__construct($data);
 
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
-        $this->container['applyToArticles'] = isset($data['applyToArticles']) ? $data['applyToArticles'] : null;
-        $this->container['articleFilters'] = isset($data['articleFilters']) ? $data['articleFilters'] : null;
-        $this->container['percentage'] = isset($data['percentage']) ? $data['percentage'] : true;
+        $this->container['loadByAttribute'] = isset($data['loadByAttribute']) ? $data['loadByAttribute'] : null;
+        $this->container['articleBundles'] = isset($data['articleBundles']) ? $data['articleBundles'] : null;
     }
 
     /**
@@ -213,157 +193,53 @@ class PercentageModifierCondition extends Condition
     {
         $invalidProperties = parent::listInvalidProperties();
 
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!is_null($this->container['target']) && !in_array($this->container['target'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'target', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTargetAllowableValues()
-    {
-        return [
-            self::TARGET_SUB,
-            self::TARGET_TOTALS,
-            self::TARGET_SHIPPING,
-            self::TARGET_ARTICLES,
-        ];
-    }
-
-    /**
-     * Gets value
-     *
-     * @return int
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param int $value value
-     *
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets target
+     * Gets loadByAttribute
      *
      * @return string
      */
-    public function getTarget()
+    public function getLoadByAttribute()
     {
-        return $this->container['target'];
+        return $this->container['loadByAttribute'];
     }
 
     /**
-     * Sets target
+     * Sets loadByAttribute
      *
-     * @param string $target target
+     * @param string $loadByAttribute loadByAttribute
      *
      * @return $this
      */
-    public function setTarget($target)
+    public function setLoadByAttribute($loadByAttribute)
     {
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!is_null($target) && !in_array($target, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'target', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['target'] = $target;
+        $this->container['loadByAttribute'] = $loadByAttribute;
 
         return $this;
     }
 
     /**
-     * Gets applyToArticles
+     * Gets articleBundles
      *
      * @return string[]
      */
-    public function getApplyToArticles()
+    public function getArticleBundles()
     {
-        return $this->container['applyToArticles'];
+        return $this->container['articleBundles'];
     }
 
     /**
-     * Sets applyToArticles
+     * Sets articleBundles
      *
-     * @param string[] $applyToArticles applyToArticles
+     * @param string[] $articleBundles articleBundles
      *
      * @return $this
      */
-    public function setApplyToArticles($applyToArticles)
+    public function setArticleBundles($articleBundles)
     {
-        $this->container['applyToArticles'] = $applyToArticles;
-
-        return $this;
-    }
-
-    /**
-     * Gets articleFilters
-     *
-     * @return string[]
-     */
-    public function getArticleFilters()
-    {
-        return $this->container['articleFilters'];
-    }
-
-    /**
-     * Sets articleFilters
-     *
-     * @param string[] $articleFilters articleFilters
-     *
-     * @return $this
-     */
-    public function setArticleFilters($articleFilters)
-    {
-        $this->container['articleFilters'] = $articleFilters;
-
-        return $this;
-    }
-
-    /**
-     * Gets percentage
-     *
-     * @return bool
-     */
-    public function getPercentage()
-    {
-        return $this->container['percentage'];
-    }
-
-    /**
-     * Sets percentage
-     *
-     * @param bool $percentage percentage
-     *
-     * @return $this
-     */
-    public function setPercentage($percentage)
-    {
-        $this->container['percentage'] = $percentage;
+        $this->container['articleBundles'] = $articleBundles;
 
         return $this;
     }

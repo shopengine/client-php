@@ -57,6 +57,7 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
+        'type' => 'string',
         'name' => 'string',
         'addressLine1' => 'string',
         'addressLine2' => 'string',
@@ -73,6 +74,7 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
+        'type' => null,
         'name' => null,
         'addressLine1' => null,
         'addressLine2' => null,
@@ -89,6 +91,7 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'name' => 'name',
         'addressLine1' => 'addressLine1',
         'addressLine2' => 'addressLine2',
@@ -104,6 +107,7 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'name' => 'setName',
         'addressLine1' => 'setAddressLine1',
         'addressLine2' => 'setAddressLine2',
@@ -119,6 +123,7 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'name' => 'getName',
         'addressLine1' => 'getAddressLine1',
         'addressLine2' => 'getAddressLine2',
@@ -236,6 +241,30 @@ class Address implements ModelInterface, ArrayAccess
         $invalidProperties = [];
 
         return $invalidProperties;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
     }
 
     /**
