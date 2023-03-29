@@ -65,6 +65,10 @@ class Code implements ModelInterface, ArrayAccess
         'code' => 'string',
         'note' => 'string',
         'codepoolId' => 'int',
+        'rechargeAmount' => 'int',
+        'rechargeType' => 'string',
+        'rechargeFrequency' => 'string',
+        'rechargeAt' => '\DateTime',
         'usages' => 'string',
         'usagesRaw' => '\SSB\Api\Model\Usages',
         'conditionSetActive' => '\SSB\Api\Model\ConditionSet',
@@ -90,6 +94,10 @@ class Code implements ModelInterface, ArrayAccess
         'code' => null,
         'note' => null,
         'codepoolId' => null,
+        'rechargeAmount' => null,
+        'rechargeType' => null,
+        'rechargeFrequency' => null,
+        'rechargeAt' => 'date-time',
         'usages' => null,
         'usagesRaw' => null,
         'conditionSetActive' => null,
@@ -116,6 +124,10 @@ class Code implements ModelInterface, ArrayAccess
         'code' => 'code',
         'note' => 'note',
         'codepoolId' => 'codepoolId',
+        'rechargeAmount' => 'rechargeAmount',
+        'rechargeType' => 'rechargeType',
+        'rechargeFrequency' => 'rechargeFrequency',
+        'rechargeAt' => 'rechargeAt',
         'usages' => 'usages',
         'usagesRaw' => 'usagesRaw',
         'conditionSetActive' => 'conditionSetActive',
@@ -142,6 +154,10 @@ class Code implements ModelInterface, ArrayAccess
         'code' => 'setCode',
         'note' => 'setNote',
         'codepoolId' => 'setCodepoolId',
+        'rechargeAmount' => 'setRechargeAmount',
+        'rechargeType' => 'setRechargeType',
+        'rechargeFrequency' => 'setRechargeFrequency',
+        'rechargeAt' => 'setRechargeAt',
         'usages' => 'setUsages',
         'usagesRaw' => 'setUsagesRaw',
         'conditionSetActive' => 'setConditionSetActive',
@@ -168,6 +184,10 @@ class Code implements ModelInterface, ArrayAccess
         'code' => 'getCode',
         'note' => 'getNote',
         'codepoolId' => 'getCodepoolId',
+        'rechargeAmount' => 'getRechargeAmount',
+        'rechargeType' => 'getRechargeType',
+        'rechargeFrequency' => 'getRechargeFrequency',
+        'rechargeAt' => 'getRechargeAt',
         'usages' => 'getUsages',
         'usagesRaw' => 'getUsagesRaw',
         'conditionSetActive' => 'getConditionSetActive',
@@ -202,6 +222,10 @@ class Code implements ModelInterface, ArrayAccess
         $this->container['code'] = isset($data['code']) ? $data['code'] : null;
         $this->container['note'] = isset($data['note']) ? $data['note'] : null;
         $this->container['codepoolId'] = isset($data['codepoolId']) ? $data['codepoolId'] : null;
+        $this->container['rechargeAmount'] = isset($data['rechargeAmount']) ? $data['rechargeAmount'] : null;
+        $this->container['rechargeType'] = isset($data['rechargeType']) ? $data['rechargeType'] : null;
+        $this->container['rechargeFrequency'] = isset($data['rechargeFrequency']) ? $data['rechargeFrequency'] : null;
+        $this->container['rechargeAt'] = isset($data['rechargeAt']) ? $data['rechargeAt'] : null;
         $this->container['usages'] = isset($data['usages']) ? $data['usages'] : null;
         $this->container['usagesRaw'] = isset($data['usagesRaw']) ? $data['usagesRaw'] : null;
         $this->container['conditionSetActive'] = isset($data['conditionSetActive']) ? $data['conditionSetActive'] : null;
@@ -470,6 +494,102 @@ class Code implements ModelInterface, ArrayAccess
     public function setCodepoolId($codepoolId)
     {
         $this->container['codepoolId'] = $codepoolId;
+
+        return $this;
+    }
+
+    /**
+     * Gets rechargeAmount
+     *
+     * @return int
+     */
+    public function getRechargeAmount()
+    {
+        return $this->container['rechargeAmount'];
+    }
+
+    /**
+     * Sets rechargeAmount
+     *
+     * @param int $rechargeAmount rechargeAmount
+     *
+     * @return $this
+     */
+    public function setRechargeAmount($rechargeAmount)
+    {
+        $this->container['rechargeAmount'] = $rechargeAmount;
+
+        return $this;
+    }
+
+    /**
+     * Gets rechargeType
+     *
+     * @return string
+     */
+    public function getRechargeType()
+    {
+        return $this->container['rechargeType'];
+    }
+
+    /**
+     * Sets rechargeType
+     *
+     * @param string $rechargeType rechargeType
+     *
+     * @return $this
+     */
+    public function setRechargeType($rechargeType)
+    {
+        $this->container['rechargeType'] = $rechargeType;
+
+        return $this;
+    }
+
+    /**
+     * Gets rechargeFrequency
+     *
+     * @return string
+     */
+    public function getRechargeFrequency()
+    {
+        return $this->container['rechargeFrequency'];
+    }
+
+    /**
+     * Sets rechargeFrequency
+     *
+     * @param string $rechargeFrequency rechargeFrequency
+     *
+     * @return $this
+     */
+    public function setRechargeFrequency($rechargeFrequency)
+    {
+        $this->container['rechargeFrequency'] = $rechargeFrequency;
+
+        return $this;
+    }
+
+    /**
+     * Gets rechargeAt
+     *
+     * @return \DateTime
+     */
+    public function getRechargeAt()
+    {
+        return $this->container['rechargeAt'];
+    }
+
+    /**
+     * Sets rechargeAt
+     *
+     * @param \DateTime $rechargeAt rechargeAt
+     *
+     * @return $this
+     */
+    public function setRechargeAt($rechargeAt)
+    {
+        $this->container['rechargeAt'] = $rechargeAt;
 
         return $this;
     }
