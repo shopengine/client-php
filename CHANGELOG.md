@@ -5,6 +5,8 @@ This project does adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- 
+- PSR-12
 - Swagger Models update with ArticleBundles
 - Add EmailOnceValidation
 - Add NewCustomerValidation
