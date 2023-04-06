@@ -4,6 +4,8 @@ namespace SSB\Api;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Validation\ValidationException;
 use SSB\Api\Contracts\ShopEngineSettingsInterface;
 
 class Client
@@ -100,6 +102,20 @@ class Client
                     return $content;
                 }
             }
+        } catch (ClientException $exception) {
+            if ($exception->getCode() === 422) {
+                $content = json_decode($exception->getResponse()->getBody(), true);
+                if (isset($content['type']) && $content['type'] === 'validation') {
+                    throw ValidationException::withMessages($content['errors'] ?? []);
+                }
+            }
+            $this->handleError($exception, [
+                'version' => self::API_VERSION,
+                'resource' => $resource,
+                'params' => $parameter,
+                'postParams' => $postParameter,
+                'timestamp' => $timestamp,
+            ]);
         } catch (Exception $exception) {
             $this->handleError($exception, [
                 'version' => self::API_VERSION,
