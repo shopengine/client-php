@@ -47,8 +47,10 @@ class Purchase implements ModelInterface, ArrayAccess
     public const DISCRIMINATOR = null;
     public const ORIGIN_STATUS_EMPTY = '';
     public const ORIGIN_STATUS_READY_TO_IMPORT = 'ready_to_import';
+    public const ORIGIN_STATUS_IMPORT_PENDING = 'import_pending';
     public const ORIGIN_STATUS_IMPORTED = 'imported';
     public const ORIGIN_STATUS_ERROR_IN_IMPORT = 'error_in_import';
+    public const ORIGIN_STATUS_IGNORE_IN_IMPORT = 'ignore_in_import';
     public const ORIGIN_STATUS_WAIT_FOR_MANUAL = 'wait_for_manual';
     public const STATUS__NEW = 'new';
     public const STATUS_PLACED = 'placed';
@@ -380,8 +382,10 @@ class Purchase implements ModelInterface, ArrayAccess
         return [
             self::ORIGIN_STATUS_EMPTY,
             self::ORIGIN_STATUS_READY_TO_IMPORT,
+            self::ORIGIN_STATUS_IMPORT_PENDING,
             self::ORIGIN_STATUS_IMPORTED,
             self::ORIGIN_STATUS_ERROR_IN_IMPORT,
+            self::ORIGIN_STATUS_IGNORE_IN_IMPORT,
             self::ORIGIN_STATUS_WAIT_FOR_MANUAL,
         ];
     }
