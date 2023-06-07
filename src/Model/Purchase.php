@@ -70,6 +70,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'purchaseEvents' => '\SSB\Api\Model\EventSourceEvent[]',
         'grandTotal' => '\SSB\Api\Model\Money',
         'subTotal' => '\SSB\Api\Model\Money',
+        'subTotalWithoutTax' => '\SSB\Api\Model\Money',
         'taxTotal' => '\SSB\Api\Model\Money',
         'discountedTotal' => '\SSB\Api\Model\Money',
         'shipping' => '\SSB\Api\Model\Money',
@@ -103,6 +104,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'purchaseEvents' => null,
         'grandTotal' => null,
         'subTotal' => null,
+        'subTotalWithoutTax' => null,
         'taxTotal' => null,
         'discountedTotal' => null,
         'shipping' => null,
@@ -157,6 +159,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'purchaseEvents' => 'purchaseEvents',
         'grandTotal' => 'grandTotal',
         'subTotal' => 'subTotal',
+        'subTotalWithoutTax' => 'subTotalWithoutTax',
         'taxTotal' => 'taxTotal',
         'discountedTotal' => 'discountedTotal',
         'shipping' => 'shipping',
@@ -190,6 +193,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'purchaseEvents' => 'setPurchaseEvents',
         'grandTotal' => 'setGrandTotal',
         'subTotal' => 'setSubTotal',
+        'subTotalWithoutTax' => 'setSubTotalWithoutTax',
         'taxTotal' => 'setTaxTotal',
         'discountedTotal' => 'setDiscountedTotal',
         'shipping' => 'setShipping',
@@ -223,6 +227,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'purchaseEvents' => 'getPurchaseEvents',
         'grandTotal' => 'getGrandTotal',
         'subTotal' => 'getSubTotal',
+        'subTotal' => 'getSubTotalWithoutTax',
         'taxTotal' => 'getTaxTotal',
         'discountedTotal' => 'getDiscountedTotal',
         'shipping' => 'getShipping',
@@ -759,6 +764,32 @@ class Purchase implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+
+    /**
+     * Gets subTotal WithoutTax
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getSubTotalWithoutTax()
+    {
+        return $this->container['subTotalWithoutTax'];
+    }
+
+    /**
+     * Sets subTotal Without Tax
+     *
+     * @param \SSB\Api\Model\Money $subTotal subTotal
+     *
+     * @return $this
+     */
+    public function setSubTotalWithoutTax($subTotal)
+    {
+        $this->container['subTotalWithoutTax'] = $subTotal;
+
+        return $this;
+    }
+
 
     /**
      * Gets taxTotal
