@@ -227,7 +227,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'purchaseEvents' => 'getPurchaseEvents',
         'grandTotal' => 'getGrandTotal',
         'subTotal' => 'getSubTotal',
-        'subTotal' => 'getSubTotalWithoutTax',
+        'subTotalWithoutTax' => 'getSubTotalWithoutTax',
         'taxTotal' => 'getTaxTotal',
         'discountedTotal' => 'getDiscountedTotal',
         'shipping' => 'getShipping',
@@ -360,6 +360,7 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['purchaseEvents'] = isset($data['purchaseEvents']) ? $data['purchaseEvents'] : null;
         $this->container['grandTotal'] = isset($data['grandTotal']) ? $data['grandTotal'] : null;
         $this->container['subTotal'] = isset($data['subTotal']) ? $data['subTotal'] : null;
+        $this->container['subTotalWithoutTax'] = isset($data['subTotalWithoutTax']) ? $data['subTotalWithoutTax'] : null;
         $this->container['taxTotal'] = isset($data['taxTotal']) ? $data['taxTotal'] : null;
         $this->container['discountedTotal'] = isset($data['discountedTotal']) ? $data['discountedTotal'] : null;
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
