@@ -770,7 +770,7 @@ class Purchase implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets subTotal WithoutTax
+     * Gets subTotal Without Tax
      *
      * @return \SSB\Api\Model\Money
      */
