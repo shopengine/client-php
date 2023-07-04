@@ -1,18 +1,21 @@
-<?php namespace SSB\Api;
+<?php
 
+namespace SSB\Api;
+
+use Exception;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Validation\ValidationException;
 use SSB\Api\Contracts\ShopEngineSettingsInterface;
 
 class Client
 {
-    const API_VERSION = 'v2';
-
+    public const API_VERSION = 'v2';
+    public static $debugData = [];
     public $apiUrl = '';
     public $privateKey = '';
     public $shop = '';
-
     public $debug = false;
-    static public $debugData = [];
 
     public function __construct(ShopEngineSettingsInterface $settings, $debug = false)
     {
@@ -25,21 +28,6 @@ class Client
     public function get($resource, array $parameter = [], bool $raw = false)
     {
         return $this->makeRequest('GET', $resource, $parameter, [], $raw);
-    }
-
-    public function post($resource, array $parameter)
-    {
-        return $this->makeRequest('POST', $resource, [], $parameter);
-    }
-
-    public function patch($resource, array $parameter)
-    {
-        return $this->makeRequest('PATCH', $resource, [], $parameter);
-    }
-
-    public function delete($resource, array $parameter = [])
-    {
-        return $this->makeRequest('DELETE', $resource, [], $parameter);
     }
 
     private function makeRequest($method, $resource, array $parameter, $postParameter = [], bool $raw = false)
@@ -63,10 +51,12 @@ class Client
         $client = new GuzzleClient();
 
         try {
-            $requestQuery = http_build_query(array_merge(
-                $parameter,
-                ['timestamp' => $timestamp, 'signature' => $signature]
-            ));
+            $requestQuery = http_build_query(
+                array_merge(
+                    $parameter,
+                    ['timestamp' => $timestamp, 'signature' => $signature]
+                )
+            );
 
             $url = $this->apiUrl . '/' . self::API_VERSION . "/{$this->shop}/$resource?$requestQuery";
 
@@ -92,7 +82,7 @@ class Client
             $content = json_decode($response->getBody());
 
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \Exception($response->getBody().'', 10);
+                throw new Exception($response->getBody() . '', 10);
             }
 
             if (is_array($content)) {
@@ -100,21 +90,33 @@ class Client
                 foreach ($content as $c) {
                     if (!$raw && isset($c->class)) {
                         $arr[] = ObjectSerializer::deserialize($c, '\\SSB\\Api\\Model\\' . $c->class, []);
-                    }
-                    else {
+                    } else {
                         $arr[] = $c;
                     }
                 }
                 return $arr;
+            } else {
+                if (!$raw && is_object($content) && isset($content->class)) {
+                    return ObjectSerializer::deserialize($content, '\\SSB\\Api\\Model\\' . $content->class, []);
+                } else {
+                    return $content;
+                }
             }
-            else if (!$raw && is_object($content) && isset($content->class)) {
-                return ObjectSerializer::deserialize($content, '\\SSB\\Api\\Model\\' . $content->class, []);
+        } catch (ClientException $exception) {
+            if ($exception->getCode() === 422) {
+                $content = json_decode($exception->getResponse()->getBody(), true);
+                if (isset($content['type']) && $content['type'] === 'validation') {
+                    throw ValidationException::withMessages($content['errors'] ?? []);
+                }
             }
-            else {
-                return $content;
-            }
-        }
-        catch (\Exception $exception) {
+            $this->handleError($exception, [
+                'version' => self::API_VERSION,
+                'resource' => $resource,
+                'params' => $parameter,
+                'postParams' => $postParameter,
+                'timestamp' => $timestamp,
+            ]);
+        } catch (Exception $exception) {
             $this->handleError($exception, [
                 'version' => self::API_VERSION,
                 'resource' => $resource,
@@ -127,23 +129,35 @@ class Client
         return [];
     }
 
-    public function handleError(\Exception $e, array $context): void
-    {
-
-    }
-
     public function eventStart(string $resource): void
     {
-
-    }
-
-    public function eventEnd(string $resource): void
-    {
-
     }
 
     private function makeSignature($query, $timestamp)
     {
         return base64_encode(hash('sha256', $query . $this->privateKey . $timestamp));
+    }
+
+    public function eventEnd(string $resource): void
+    {
+    }
+
+    public function handleError(Exception $e, array $context): void
+    {
+    }
+
+    public function post($resource, array $parameter)
+    {
+        return $this->makeRequest('POST', $resource, [], $parameter);
+    }
+
+    public function patch($resource, array $parameter)
+    {
+        return $this->makeRequest('PATCH', $resource, [], $parameter);
+    }
+
+    public function delete($resource, array $parameter = [])
+    {
+        return $this->makeRequest('DELETE', $resource, [], $parameter);
     }
 }

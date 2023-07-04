@@ -1,6 +1,6 @@
 <?php
 /**
- * ContainsArticleCondition
+ * LeftOverValidation
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use ReturnTypeWillChange;
 use SSB\Api\ObjectSerializer;
 
 /**
- * ContainsArticleCondition Class Doc Comment
+ * LeftOverValidation Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ContainsArticleCondition extends Condition
+class LeftOverValidation extends Validation
 {
     public const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ContainsArticleCondition extends Condition
      *
      * @var string
      */
-    protected static $swaggerModelName = 'ContainsArticleCondition';
+    protected static $swaggerModelName = 'LeftOverValidation';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +56,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'articleSkus' => 'string[]',
-        'conditions' => '\SSB\Api\Model\Condition[]'
+        'value' => '\SSB\Api\Model\Money',
+        'target' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -66,8 +67,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'articleSkus' => null,
-        'conditions' => null
+        'value' => null,
+        'target' => null,
+        'type' => null
     ];
     /**
      * Array of attributes where the key is the local name,
@@ -76,8 +78,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'articleSkus' => 'articleSkus',
-        'conditions' => 'conditions'
+        'value' => 'value',
+        'target' => 'target',
+        'type' => 'type'
     ];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -85,8 +88,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'articleSkus' => 'setArticleSkus',
-        'conditions' => 'setConditions'
+        'value' => 'setValue',
+        'target' => 'setTarget',
+        'type' => 'setType'
     ];
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -94,8 +98,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'articleSkus' => 'getArticleSkus',
-        'conditions' => 'getConditions'
+        'value' => 'getValue',
+        'target' => 'getTarget',
+        'type' => 'getType'
     ];
 
     /**
@@ -108,8 +113,9 @@ class ContainsArticleCondition extends Condition
     {
         parent::__construct($data);
 
-        $this->container['articleSkus'] = isset($data['articleSkus']) ? $data['articleSkus'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -193,53 +199,80 @@ class ContainsArticleCondition extends Condition
     {
         $invalidProperties = parent::listInvalidProperties();
 
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
     /**
-     * Gets articleSkus
+     * Gets value
      *
-     * @return string[]
+     * @return Money
      */
-    public function getArticleSkus()
+    public function getValue()
     {
-        return $this->container['articleSkus'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets articleSkus
+     * Sets value
      *
-     * @param string[] $articleSkus articleSkus
+     * @param Money $value value
      *
      * @return $this
      */
-    public function setArticleSkus($articleSkus)
+    public function setValue($value)
     {
-        $this->container['articleSkus'] = $articleSkus;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets conditions
+     * Gets target
      *
-     * @return Condition[]
+     * @return string
      */
-    public function getConditions()
+    public function getTarget()
     {
-        return $this->container['conditions'];
+        return $this->container['target'];
     }
 
     /**
-     * Sets conditions
+     * Sets target
      *
-     * @param Condition[] $conditions conditions
+     * @param string $target Target
      *
      * @return $this
      */
-    public function setConditions($conditions)
+    public function setTarget($target)
     {
-        $this->container['conditions'] = $conditions;
+        $this->container['target'] = $target;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }

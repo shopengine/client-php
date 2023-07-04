@@ -1,6 +1,6 @@
 <?php
 /**
- * ContainsArticleCondition
+ * FreeArticleBundleCondition
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use ReturnTypeWillChange;
 use SSB\Api\ObjectSerializer;
 
 /**
- * ContainsArticleCondition Class Doc Comment
+ * FreeArticleBundleCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ContainsArticleCondition extends Condition
+class FreeArticleBundleCondition extends Condition
 {
     public const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ContainsArticleCondition extends Condition
      *
      * @var string
      */
-    protected static $swaggerModelName = 'ContainsArticleCondition';
+    protected static $swaggerModelName = 'FreeArticleBundleCondition';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +56,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'articleSkus' => 'string[]',
-        'conditions' => '\SSB\Api\Model\Condition[]'
+        'sku' => 'string',
+        'configuration' => 'string[]',
+        'hidden' => 'bool'
     ];
 
     /**
@@ -66,8 +67,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'articleSkus' => null,
-        'conditions' => null
+        'sku' => null,
+        'configuration' => null,
+        'hidden' => null
     ];
     /**
      * Array of attributes where the key is the local name,
@@ -76,8 +78,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'articleSkus' => 'articleSkus',
-        'conditions' => 'conditions'
+        'sku' => 'sku',
+        'configuration' => 'configuration',
+        'hidden' => 'hidden'
     ];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -85,8 +88,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'articleSkus' => 'setArticleSkus',
-        'conditions' => 'setConditions'
+        'sku' => 'setSku',
+        'configuration' => 'setConfiguration',
+        'hidden' => 'setHidden'
     ];
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -94,8 +98,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'articleSkus' => 'getArticleSkus',
-        'conditions' => 'getConditions'
+        'sku' => 'getSku',
+        'configuration' => 'getConfiguration',
+        'hidden' => 'getHidden'
     ];
 
     /**
@@ -108,8 +113,9 @@ class ContainsArticleCondition extends Condition
     {
         parent::__construct($data);
 
-        $this->container['articleSkus'] = isset($data['articleSkus']) ? $data['articleSkus'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+        $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
+        $this->container['configuration'] = isset($data['configuration']) ? $data['configuration'] : null;
+        $this->container['hidden'] = isset($data['hidden']) ? $data['hidden'] : null;
     }
 
     /**
@@ -197,49 +203,73 @@ class ContainsArticleCondition extends Condition
     }
 
     /**
-     * Gets articleSkus
+     * Gets sku
      *
-     * @return string[]
+     * @return string
      */
-    public function getArticleSkus()
+    public function getSku()
     {
-        return $this->container['articleSkus'];
+        return $this->container['sku'];
     }
 
     /**
-     * Sets articleSkus
+     * Sets sku
      *
-     * @param string[] $articleSkus articleSkus
+     * @param string $sku sku
      *
      * @return $this
      */
-    public function setArticleSkus($articleSkus)
+    public function setSku($sku)
     {
-        $this->container['articleSkus'] = $articleSkus;
+        $this->container['sku'] = $sku;
 
         return $this;
     }
 
     /**
-     * Gets conditions
+     * Gets configuration
      *
-     * @return Condition[]
+     * @return string[]
      */
-    public function getConditions()
+    public function getConfiguration()
     {
-        return $this->container['conditions'];
+        return $this->container['configuration'];
     }
 
     /**
-     * Sets conditions
+     * Sets configuration
      *
-     * @param Condition[] $conditions conditions
+     * @param string[] $configuration configuration
      *
      * @return $this
      */
-    public function setConditions($conditions)
+    public function setConfiguration($configuration)
     {
-        $this->container['conditions'] = $conditions;
+        $this->container['configuration'] = $configuration;
+
+        return $this;
+    }
+
+    /**
+     * Gets hidden
+     *
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->container['hidden'];
+    }
+
+    /**
+     * Sets hidden
+     *
+     * @param bool $hidden hidden
+     *
+     * @return $this
+     */
+    public function setHidden($hidden)
+    {
+        $this->container['hidden'] = $hidden;
 
         return $this;
     }

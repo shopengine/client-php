@@ -6,7 +6,8 @@ use SSB\Api\Contracts\ShopEngineSettingsInterface;
 
 class ClientFactory
 {
-    static public function make(ShopEngineSettingsInterface $settings, bool $debug = false) : LaravelClient {
+    public static function make(ShopEngineSettingsInterface $settings, bool $debug = false): LaravelClient
+    {
         return new LaravelClient($settings, $debug);
     }
 }

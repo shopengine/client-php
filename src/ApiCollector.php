@@ -1,4 +1,6 @@
-<?php namespace SSB\Api;
+<?php
+
+namespace SSB\Api;
 
 use DebugBar\DataCollector\DataCollector;
 use DebugBar\DataCollector\Renderable;
@@ -7,7 +9,6 @@ class ApiCollector extends DataCollector implements Renderable
 {
     public function add()
     {
-
     }
 
     public function getName()

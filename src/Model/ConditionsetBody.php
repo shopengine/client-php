@@ -1,6 +1,6 @@
 <?php
 /**
- * ContainsArticleCondition
+ * ConditionsetBody
  *
  * PHP version 5
  *
@@ -28,18 +28,19 @@
 
 namespace SSB\Api\Model;
 
+use ArrayAccess;
 use ReturnTypeWillChange;
 use SSB\Api\ObjectSerializer;
 
 /**
- * ContainsArticleCondition Class Doc Comment
+ * ConditionsetBody Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ContainsArticleCondition extends Condition
+class ConditionsetBody implements ModelInterface, ArrayAccess
 {
     public const DISCRIMINATOR = null;
 
@@ -48,7 +49,7 @@ class ContainsArticleCondition extends Condition
      *
      * @var string
      */
-    protected static $swaggerModelName = 'ContainsArticleCondition';
+    protected static $swaggerModelName = 'conditionset_body';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +57,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'articleSkus' => 'string[]',
-        'conditions' => '\SSB\Api\Model\Condition[]'
+        'name' => 'string',
+        'conditions' => '\SSB\Api\Model\FreeArticleCondition[]',
+        'group' => 'int'
     ];
 
     /**
@@ -66,8 +68,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'articleSkus' => null,
-        'conditions' => null
+        'name' => null,
+        'conditions' => null,
+        'group' => null
     ];
     /**
      * Array of attributes where the key is the local name,
@@ -76,8 +79,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'articleSkus' => 'articleSkus',
-        'conditions' => 'conditions'
+        'name' => 'name',
+        'conditions' => 'conditions',
+        'group' => 'group'
     ];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -85,8 +89,9 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'articleSkus' => 'setArticleSkus',
-        'conditions' => 'setConditions'
+        'name' => 'setName',
+        'conditions' => 'setConditions',
+        'group' => 'setGroup'
     ];
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -94,9 +99,16 @@ class ContainsArticleCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'articleSkus' => 'getArticleSkus',
-        'conditions' => 'getConditions'
+        'name' => 'getName',
+        'conditions' => 'getConditions',
+        'group' => 'getGroup'
     ];
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -106,10 +118,9 @@ class ContainsArticleCondition extends Condition
      */
     public function __construct(array $data = null)
     {
-        parent::__construct($data);
-
-        $this->container['articleSkus'] = isset($data['articleSkus']) ? $data['articleSkus'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
     }
 
     /**
@@ -119,7 +130,7 @@ class ContainsArticleCondition extends Condition
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes + parent::swaggerTypes();
+        return self::$swaggerTypes;
     }
 
     /**
@@ -129,7 +140,7 @@ class ContainsArticleCondition extends Condition
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats + parent::swaggerFormats();
+        return self::$swaggerFormats;
     }
 
     /**
@@ -140,7 +151,7 @@ class ContainsArticleCondition extends Condition
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -150,7 +161,7 @@ class ContainsArticleCondition extends Condition
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -160,7 +171,7 @@ class ContainsArticleCondition extends Condition
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -191,31 +202,37 @@ class ContainsArticleCondition extends Condition
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['conditions'] === null) {
+            $invalidProperties[] = "'conditions' can't be null";
+        }
         return $invalidProperties;
     }
 
     /**
-     * Gets articleSkus
+     * Gets name
      *
-     * @return string[]
+     * @return string
      */
-    public function getArticleSkus()
+    public function getName()
     {
-        return $this->container['articleSkus'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets articleSkus
+     * Sets name
      *
-     * @param string[] $articleSkus articleSkus
+     * @param string $name name
      *
      * @return $this
      */
-    public function setArticleSkus($articleSkus)
+    public function setName($name)
     {
-        $this->container['articleSkus'] = $articleSkus;
+        $this->container['name'] = $name;
 
         return $this;
     }
@@ -223,7 +240,7 @@ class ContainsArticleCondition extends Condition
     /**
      * Gets conditions
      *
-     * @return Condition[]
+     * @return FreeArticleCondition[]
      */
     public function getConditions()
     {
@@ -233,13 +250,37 @@ class ContainsArticleCondition extends Condition
     /**
      * Sets conditions
      *
-     * @param Condition[] $conditions conditions
+     * @param FreeArticleCondition[] $conditions conditions
      *
      * @return $this
      */
     public function setConditions($conditions)
     {
         $this->container['conditions'] = $conditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return int
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param int $group group
+     *
+     * @return $this
+     */
+    public function setGroup($group)
+    {
+        $this->container['group'] = $group;
 
         return $this;
     }
